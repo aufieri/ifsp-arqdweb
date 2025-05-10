@@ -1,6 +1,12 @@
-<html>
-<body>
-<h2>Projeto Funcionando corretamente!</h2>
-<h3>teste lalala</h3>
-</body>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Title</title>
+	</head>
+	<body>
+		<h1>Test</h1>
+	</body>
 </html>

@@ -1,6 +1,8 @@
 package model;
 
-public class Jogo {
+import java.io.Serializable;
+
+public class Jogo implements Serializable {
 	
     private String titulo;
     private String desenvolvedor;
@@ -12,6 +14,9 @@ public class Jogo {
     private String classificacao;
     private double avaliacao;
     
+    public Jogo() {
+    	
+    }
     
     // getters e setters
 	public String getTitulo() {

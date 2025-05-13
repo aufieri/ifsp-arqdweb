@@ -16,6 +16,30 @@
   	<description></description>
   	<servlet-class>Hello</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AddGameServlet</servlet-name>
+  	<display-name>AddGameServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.AddGameServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ViewGameServlet</servlet-name>
+  	<display-name>ViewGameServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.ViewGameServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UpdateGameServlet</servlet-name>
+  	<display-name>UpdateGameServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.UpdateGameServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteGameServlet</servlet-name>
+  	<display-name>DeleteGameServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.DeleteGameServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Teste</servlet-name>
   	<url-pattern>/Teste</url-pattern>
@@ -23,6 +47,22 @@
   <servlet-mapping>
   	<servlet-name>Hello</servlet-name>
   	<url-pattern>/Hello</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddGameServlet</servlet-name>
+  	<url-pattern>/AddGameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ViewGameServlet</servlet-name>
+  	<url-pattern>/ViewGameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateGameServlet</servlet-name>
+  	<url-pattern>/UpdateGameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteGameServlet</servlet-name>
+  	<url-pattern>/DeleteGameServlet</url-pattern>
   </servlet-mapping>
 </web-app>
 

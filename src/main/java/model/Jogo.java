@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Jogo implements Serializable {
 	
+	public static int lastId = 0;
+	private int id; 
     private String titulo;
     private String desenvolvedor;
     private int anoLancamento;
@@ -13,6 +15,10 @@ public class Jogo implements Serializable {
     private String plataforma;
     private String classificacao;
     private double avaliacao;
+    
+    public Jogo() {
+    	this.id = Jogo.lastId++;
+    }
     
     public Jogo(String titulo, String desenvolvedor, int anoLancamento, String genero,
             String sinopse, String idioma, String plataforma, String classificacao, double avaliacao) {

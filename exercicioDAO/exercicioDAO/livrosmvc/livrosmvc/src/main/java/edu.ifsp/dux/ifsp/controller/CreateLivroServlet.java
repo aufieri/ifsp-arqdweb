@@ -35,7 +35,7 @@ public class CreateLivroServlet extends HttpServlet {
 	        }
 
 	        int anoPublicacao = Integer.parseInt(anoStr);
-
+	        aval
 	        Livro novoLivro = new Livro(titulo, autor, genero, anoPublicacao);
 
 	        dao.adicionarLivro(novoLivro);

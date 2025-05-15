@@ -2,23 +2,77 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 
-body {  
-  font-family: "Open Sans", sans-serif;
-  font-size: 1em;
-  font-weight: 400;
+#navPrincipal{
+	padding: 2%;
+    background-color: rgb(88, 88, 88);
 }
 
-h1 {
-	color: #32CD32;
+#navPrincipal .nav-link,
+#navPrincipal .navbar-brand {
+  color: white;
 }
 
-.BotaoPadrao{
-	text-decoration: none;
-	background-color:#32CD32;
-	padding: 5px 10px 5px 10px;
-	color: #fff;
-	font-size: 1.2em;
-	font-weight: 700;
-	border-radius: 5px;
-	
+#navPrincipal .nav-link:hover {
+  color: rgb(148, 233, 21); /* Destaque ao passar o mouse */
+}
+
+
+#carouselExampleCaptions {
+    max-width: 98.9%;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    height: 600px; /* altura fixa para manter padrão */
+  }
+  
+  #carouselExampleCaptions .carousel-item img {
+ 	height: 100%;
+    width: 100%;
+    object-fit: cover; /* cobre todo o espaço sem deformar */
+    background-color: #000;       
+  }
+
+  #minecraft{
+    display: flex;
+  justify-content: center;  /* Centraliza os cards */
+  gap: 2px;                /* Espaço entre os cards */
+  flex-wrap: wrap;          /* Permite quebrar linha em telas menores */
+  margin: 40px auto
+  }
+
+  #stardew{
+    display: flex;
+  justify-content: center;  /* Centraliza os cards */
+  gap: 2px;                /* Espaço entre os cards */
+  flex-wrap: wrap;          /* Permite quebrar linha em telas menores */
+  margin: 40px auto
+  }
+
+  #terra{
+    display: flex;
+  justify-content: center;  /* Centraliza os cards */
+  gap: 2px;                /* Espaço entre os cards */
+  flex-wrap: wrap;          /* Permite quebrar linha em telas menores */
+  margin: 40px auto
+  }
+
+  .linha-de-cards {
+    display: flex;
+    gap: 20px;
+  }
+
+  #btn-buscar{
+    border-color: rgb(148, 233, 21);
+    color: rgb(148, 233, 21);
+  }
+  #btn-buscar:hover {
+    background-color: rgb(148, 233, 21);
+    color: white;            
+  }
+
+
+#btn-jogos{
+    background-color: rgb(148, 233, 21);
+    border-color: rgb(148, 233, 21);
 }

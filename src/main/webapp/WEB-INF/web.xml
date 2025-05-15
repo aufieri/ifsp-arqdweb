@@ -5,16 +5,10 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-  	<servlet-name>Teste</servlet-name>
-  	<display-name>Teste</display-name>
+  	<servlet-name>Controller</servlet-name>
+  	<display-name>Controller</display-name>
   	<description></description>
-  	<servlet-class>model.Teste</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>Hello</servlet-name>
-  	<display-name>Hello</display-name>
-  	<description></description>
-  	<servlet-class>Hello</servlet-class>
+  	<servlet-class>controller.Controller</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>AddGameServlet</servlet-name>
@@ -41,12 +35,8 @@
   	<servlet-class>controller.DeleteGameServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>Teste</servlet-name>
-  	<url-pattern>/Teste</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>Hello</servlet-name>
-  	<url-pattern>/Hello</url-pattern>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>/Controller</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>AddGameServlet</servlet-name>

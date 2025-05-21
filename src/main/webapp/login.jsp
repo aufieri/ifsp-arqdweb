@@ -45,15 +45,15 @@
   </div>
 </nav>
 
- <form class="login-form">
+ <form class="login-form" method="post" action="LoginServlet">
     <h2 class="mb-4 text-center">Login</h2>
     <div class="mb-3">
-      <label for="email" class="form-label">Endereço de email</label>
-      <input type="email" class="form-control" id="email" placeholder="Seu email" required>
+      <label for="username" class="form-label">Username</label>
+      <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
     </div>
     <div class="mb-3">
       <label for="senha" class="form-label">Senha</label>
-      <input type="password" class="form-control" id="senha" placeholder="Senha" required>
+      <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha" required>
     </div>
     <button type="submit" class="btn btn-secondary w-100">Entrar</button>
   </form>

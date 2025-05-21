@@ -18,7 +18,8 @@ public class AddGameServlet extends HttpServlet {
     public AddGameServlet() {
         super();
     }
-
+    
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		

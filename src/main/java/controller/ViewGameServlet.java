@@ -7,34 +7,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ViewGameServlet
- */
-@WebServlet("/ViewGameServlet")
+import dao.DaoJogo;
+
+
+@WebServlet("/listar-jogos")
 public class ViewGameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private static DaoJogo dao = DaoJogo.getInstance();
+
     public ViewGameServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+        super();       
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+			request.setCharacterEncoding("UTF-8");
+			
+			getServletContext().setAttribute("jogos", dao.getListaDeJogos());
+			if (dao.getListaDeJogos().size() > 10) {
+				System.out.println(dao.getListaDeJogos().get(0).getTitulo());
+			}
+			System.out.println(request.getAttribute("jogos"));
+			
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

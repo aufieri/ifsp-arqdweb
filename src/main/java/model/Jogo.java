@@ -88,4 +88,7 @@ public class Jogo implements Serializable {
 	public void setAvaliacao(double avaliacao) {
 		this.avaliacao = avaliacao;
 	}
+	public int getId() {
+		return id;
+	}
 }

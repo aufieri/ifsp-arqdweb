@@ -1,6 +1,8 @@
 package model;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable  {
     private String userName;   
     private String senha;
     
@@ -18,7 +20,5 @@ public class Usuario {
 		this.senha = senha;
 	}
     
-    
-    
-    
+ 
 }

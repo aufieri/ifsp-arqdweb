@@ -13,7 +13,7 @@
 }
 
 #navPrincipal .nav-link:hover {
-  color: rgb(148, 233, 21); /* Destaque ao passar o mouse */
+  color: rgb(148, 233, 21); 
 }
 
 
@@ -23,37 +23,36 @@
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     position: relative;
-    height: 600px; /* altura fixa para manter padrão */
+    height: 600px; 
   }
   
   #carouselExampleCaptions .carousel-item img {
  	height: 100%;
     width: 100%;
-    object-fit: cover; /* cobre todo o espaço sem deformar */
+    object-fit: cover; 
     background-color: #000;       
   }
 
   #minecraft{
     display: flex;
-  justify-content: center;  /* Centraliza os cards */
-  gap: 2px;                /* Espaço entre os cards */
-  flex-wrap: wrap;          /* Permite quebrar linha em telas menores */
+  justify-content: center;  
+  gap: 2px;                
+  flex-wrap: wrap;          
   margin: 40px auto
   }
 
   #stardew{
     display: flex;
-  justify-content: center;  /* Centraliza os cards */
-  gap: 2px;                /* Espaço entre os cards */
-  flex-wrap: wrap;          /* Permite quebrar linha em telas menores */
-  margin: 40px auto
+  justify-content: center;  
+  gap: 2px;                
+  flex-wrap: wrap;          
   }
 
   #terra{
     display: flex;
-  justify-content: center;  /* Centraliza os cards */
-  gap: 2px;                /* Espaço entre os cards */
-  flex-wrap: wrap;          /* Permite quebrar linha em telas menores */
+  justify-content: center;  
+  gap: 2px;                
+  flex-wrap: wrap;          
   margin: 40px auto
   }
 
@@ -75,4 +74,29 @@
 #btn-jogos{
     background-color: rgb(148, 233, 21);
     border-color: rgb(148, 233, 21);
+}
+
+ #btn-adicionar{
+    background-color: rgb(148, 233, 21);
+    border-color: rgb(148, 233, 21);
+    cursor: pointer;
+    margin-top: 200px; 
+    margin-left: 0;
+    display: block
+}
+
+#tabela{
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    text-align: center;
+    margin-top: 40px;
+    border-color: rgb(148, 233, 21);
+    font-style: unset;
+}
+
+#container{
+    margin-left: 29%;
 }

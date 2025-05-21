@@ -1,0 +1,38 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+#navPrincipal{
+	position: fixed;
+  	top: 0;
+  	width: 100%;
+	padding: 2%;
+    background-color: rgb(88, 88, 88);
+}
+
+#navPrincipal .nav-link,
+#navPrincipal .navbar-brand {
+  color: white;
+}
+
+#navPrincipal .nav-link:hover {
+  color: rgb(148, 233, 21); 
+}
+  

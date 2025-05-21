@@ -76,3 +76,28 @@
     background-color: rgb(148, 233, 21);
     border-color: rgb(148, 233, 21);
 }
+
+ #btn-adicionar{
+    background-color: rgb(148, 233, 21);
+    border-color: rgb(148, 233, 21);
+    cursor: pointer;
+    margin-top: 200px; 
+    margin-left: 0;
+    display: block
+}
+
+#tabela{
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    text-align: center;
+    margin-top: 40px;
+    border-color: rgb(148, 233, 21);
+    font-style: unset;
+}
+
+#container{
+    margin-left: 29%;
+}

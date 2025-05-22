@@ -22,8 +22,13 @@
             <td>2023</td>
 
             <td>
-            <img src="imagens/highlighter.svg" alt="editar">
+            <a href="editGame.jsp">
+            	<img src="imagens/highlighter.svg" alt="editar">
+            </a>
+            
+            <a href="DeleteGameServlet?id=${jogo.id}">
             <img src="imagens/backspace.svg" alt="Excluir">
+            </a>            
             </td>
 
           </tr>
@@ -34,8 +39,13 @@
             <td>2025</td>
             
             <td>
-            <img src="imagens/highlighter.svg" alt="editar">
+            <a href="editGame.jsp?id=${jogo.id}">
+            	<img src="imagens/highlighter.svg" alt="editar">
+            </a>
+            
+            <a href="DeleteGameServlet?id=${jogo.id}">
             <img src="imagens/backspace.svg" alt="Excluir">
+            </a>            
             </td>
 
           </tr>
@@ -46,8 +56,13 @@
             <td>2015</td>
             
             <td>
-            <img src="imagens/highlighter.svg" alt="editar">
+            <a href="editGame.jsp?id=${jogo.id}">
+            	<img src="imagens/highlighter.svg" alt="editar">
+            </a>
+            
+            <a href="DeleteGameServlet?id=${jogo.id}">
             <img src="imagens/backspace.svg" alt="Excluir">
+            </a>            
             </td>
 
           </tr>

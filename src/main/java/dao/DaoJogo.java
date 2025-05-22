@@ -36,6 +36,16 @@ public class DaoJogo {
 			return listaDeJogos.remove(J);
 		}
 		
+		public Jogo buscarPorId(int id) {
+		    for (Jogo jogo : listaDeJogos) {
+		        if (jogo.getId() == id) {
+		            return jogo;
+		        }
+		    }
+		    return null; 
+		}
+
+		
 		
 		
 }

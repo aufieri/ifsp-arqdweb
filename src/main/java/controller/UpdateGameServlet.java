@@ -44,7 +44,7 @@ public class UpdateGameServlet extends HttpServlet {
     			return;
     		}
     		
-    		getServletContext().setAttribute("jogo", jogoEncontrado);
+    		request.setAttribute("jogo", jogoEncontrado);
     		request.getRequestDispatcher("change.jsp").forward(request, response);
     		
     	}catch (NumberFormatException e) {

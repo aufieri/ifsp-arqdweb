@@ -1,5 +1,6 @@
 <%@ include file="header.jsp" %>
 
+
 <h1 id="TituloCadastro">CADASTRO JOGO</h1>
 
 

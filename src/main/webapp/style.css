@@ -3,8 +3,8 @@
 
 
 #navPrincipal{
-	padding: 2%;
-    background-color: rgb(88, 88, 88);
+   padding: 2%;
+   background-color: rgb(88, 88, 88);
 }
 
 #navPrincipal .nav-link,
@@ -18,37 +18,37 @@
 
 
 #carouselExampleCaptions {
-    max-width: 98.9%;
-    margin: 0 auto;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    position: relative;
-    height: 600px; 
+   max-width: 98.9%;
+   margin: 0 auto;
+   overflow: hidden;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+   position: relative;
+   height: 600px; 
   }
   
   #carouselExampleCaptions .carousel-item img {
- 	height: 100%;
-    width: 100%;
-    object-fit: cover; 
-    background-color: #000;       
+   height: 100%;
+   width: 100%;
+   object-fit: cover; 
+   background-color: #000;       
   }
 
-  #minecraft{
-    display: flex;
+  #homemaranha{
+  display: flex;
   justify-content: center;  
   gap: 2px;                
   flex-wrap: wrap;          
   margin: 40px auto
   }
 
-  #stardew{
-    display: flex;
+  #gta{
+  display: flex;
   justify-content: center;  
   gap: 2px;                
   flex-wrap: wrap;          
   }
 
-  #terra{
+  #witcher{
     display: flex;
   justify-content: center;  
   gap: 2px;                
@@ -57,46 +57,93 @@
   }
 
   .linha-de-cards {
-    display: flex;
-    gap: 20px;
+   display: flex;
+   gap: 20px;
   }
 
   #btn-buscar{
-    border-color: rgb(148, 233, 21);
-    color: rgb(148, 233, 21);
+   border-color: rgb(148, 233, 21);
+   color: rgb(148, 233, 21);
   }
   #btn-buscar:hover {
-    background-color: rgb(148, 233, 21);
-    color: white;            
+   background-color: rgb(148, 233, 21);
+   color: white;            
   }
 
 
 #btn-jogos{
-    background-color: rgb(148, 233, 21);
-    border-color: rgb(148, 233, 21);
+   background-color: rgb(148, 233, 21);
+   border-color: rgb(148, 233, 21);
 }
 
  #btn-adicionar{
-    background-color: rgb(148, 233, 21);
-    border-color: rgb(148, 233, 21);
-    cursor: pointer;
-    margin-top: 200px; 
-    margin-left: 0;
-    display: block
+   background-color: rgb(148, 233, 21);
+   border-color: rgb(148, 233, 21);
+   cursor: pointer;
+   margin-top: 200px; 
+   margin-left: 0;
+   display: block
 }
 
 #tabela{
-    border-collapse: collapse;
-    width: 80%;
-    max-width: 800px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    text-align: center;
-    margin-top: 40px;
-    border-color: rgb(148, 233, 21);
-    font-style: unset;
+   border-collapse: collapse;
+   width: 80%;
+   max-width: 800px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+   background-color: white;
+   text-align: center;
+   margin-top: 40px;
+   border-color: rgb(148, 233, 21);
+   font-style: unset;
 }
 
 #container{
     margin-left: 29%;
 }
+
+#TituloCadastro{
+  text-align: Center;
+  margin-top: 55px;
+  font-style: arial;
+}
+
+#Cadastro{
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#BotaoCadastroJogo{
+  background-color: rgb(148, 233, 21);
+  border-color: rgb(148, 233, 21);
+}
+
+#sobre-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #3a3a3a;
+  font-weight: bold;
+}
+
+h4 {
+  margin-top: 20px;
+  color: #5a5a5a;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+

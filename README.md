@@ -1,6 +1,6 @@
 # 🎮 Sistema de Gerenciamento de Jogos - Java Web
 
-Este projeto é uma aplicação web desenvolvida em **Java**, com o uso do **Maven**, criada por um grupo de estudantes do curso de Análise e Desenvolvimento de Sistemas. A aplicação permite o gerenciamento de um catálogo de jogos eletrônicos, com funcionalidades exclusivas para administradores.
+Este projeto é uma aplicação web desenvolvida em **Java**, com o uso do **Maven**, criada por um grupo de estudantes do curso de Tecnologia em Sistemas Para Internet. A aplicação permite o gerenciamento de um catálogo de jogos eletrônicos, com funcionalidades exclusivas para administradores.
 
 ---
 

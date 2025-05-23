@@ -24,11 +24,9 @@ public class ViewGameServlet extends HttpServlet {
 
 			request.setCharacterEncoding("UTF-8");
 			
-			getServletContext().setAttribute("jogos", dao.getListaDeJogos());
-			if (dao.getListaDeJogos().size() > 10) {
-				System.out.println(dao.getListaDeJogos().get(0).getTitulo());
-			}
-			System.out.println(request.getAttribute("jogos"));
+			request.setAttribute("jogos", dao.getListaDeJogos());
+
+	
 			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

@@ -58,7 +58,7 @@
     <div class="card-body">
       <h5 class="card-title">GTA VI</h5>
       <p class="card-text">R$500,00</p>
-      <a href="#" class="btn btn-primary" id="btn-jogos">Ver Mais</a>
+      <a href="#" class="btn btn-primary" id="btn-jogos" onclick="window.location.href='VerMais.jsp'">Ver Mais</a>
     </div>
   </div>
 
@@ -68,7 +68,7 @@
     <div class="card-body">
       <h5 class="card-title" id="texto-card">The Witcher 3: Wild Hunt</h5>
       <p class="card-text">R$150,00</p>
-      <a href="#" class="btn btn-primary" id="btn-jogos">Ver Mais</a>
+      <a href="#" class="btn btn-primary" id="btn-jogos" onclick="window.location.href='VerMais.jsp'">Ver Mais </a>
     </div>
   </div>
 

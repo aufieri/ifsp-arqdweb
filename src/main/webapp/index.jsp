@@ -1,5 +1,8 @@
 <%@ include file="header.jsp" %>
 
+<div id="main-content">
+  <!-- Seu conteúdo, ex: tabela, botões, etc -->
+</div>
 <div id="EditandoCarrossel">
 
 

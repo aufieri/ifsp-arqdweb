@@ -38,7 +38,7 @@ public class DaoJogo {
 		
 		public Jogo buscarPorId(int id) {
 		    for (Jogo jogo : listaDeJogos) {
-		        if (jogo.getId() == id) {
+		        if (jogo.getid() == id) {
 		            return jogo;
 		        }
 		    }

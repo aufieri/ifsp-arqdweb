@@ -8,17 +8,17 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Título</th>
-            <th scope="col">Gênero</th>
+            <th scope="col">TÃ­tulo</th>
+            <th scope="col">GÃªnero</th>
             <th scope="col">Ano</th>
-            <th scope="col">Ação</th>
+            <th scope="col">AÃ§Ã£o</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">1</th>
             <td>Marvel Spider Man 2</td>
-            <td>Ação/Aventura</td>
+            <td>AÃ§Ã£o/Aventura</td>
             <td>2023</td>
 
             <td>
@@ -35,7 +35,7 @@
           <tr>
             <th scope="row">2</th>
             <td>GTA IV</td>
-            <td>Ação</td>
+            <td>AÃ§Ã£o</td>
             <td>2025</td>
             
             <td>
@@ -52,7 +52,7 @@
           <tr>
             <th scope="row">3</th>
             <td>The Witcher 3: Wild Hunt</td>
-            <td>Ação</td>
+            <td>AÃ§Ã£o</td>
             <td>2015</td>
             
             <td>

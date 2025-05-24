@@ -4,6 +4,9 @@
 <%@ page import="dao.DaoJogo" %>
 
 
+<div id="main-content">
+  <!-- Seu conteúdo, ex: tabela, botões, etc -->
+</div>
 <div id="EditandoCarrossel">
 
 

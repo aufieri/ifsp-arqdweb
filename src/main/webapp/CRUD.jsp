@@ -1,62 +1,62 @@
-<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"%>
 
-      <div class="container" id="container">
-      
-      <button type="button" class="btn btn-primary btn-lg" id="btn-adicionar" onclick="window.location.href='adicionarjogo.jsp'">Adicionar Jogo</button>
+<div id="main-content">
+	<div class="container" id="container">
 
-      <table class="table" id="tabela">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Título</th>
-            <th scope="col">Gênero</th>
-            <th scope="col">Ano</th>
-            <th scope="col">Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Marvel Spider Man 2</td>
-            <td>Ação/Aventura</td>
-            <td>2023</td>
+		<button type="button" class="btn btn-primary btn-lg"
+			id="btn-adicionar" onclick="window.location.href='adicionarjogo.jsp'">Adicionar
+			Jogo</button>
 
-            <td>
-            <img src="imagens/highlighter.svg" alt="editar">
-            <img src="imagens/backspace.svg" alt="Excluir">
-            </td>
+		<table class="table" id="tabela">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Título</th>
+					<th scope="col">Gênero</th>
+					<th scope="col">Ano</th>
+					<th scope="col">Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>Marvel Spider Man 2</td>
+					<td>Ação/Aventura</td>
+					<td>2023</td>
 
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>GTA IV</td>
-            <td>Ação</td>
-            <td>2025</td>
-            
-            <td>
-            <img src="imagens/highlighter.svg" alt="editar">
-            <img src="imagens/backspace.svg" alt="Excluir">
-            </td>
+					<td><img src="imagens/highlighter.svg" alt="editar"> <img
+						src="imagens/backspace.svg" alt="Excluir"></td>
 
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>The Witcher 3: Wild Hunt</td>
-            <td>Ação</td>
-            <td>2015</td>
-            
-            <td>
-            <img src="imagens/highlighter.svg" alt="editar">
-            <img src="imagens/backspace.svg" alt="Excluir">
-            </td>
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>GTA IV</td>
+					<td>Ação</td>
+					<td>2025</td>
 
-          </tr>
-        </tbody>
-      </table>
-      </div>
+					<td><img src="imagens/highlighter.svg" alt="editar"> <img
+						src="imagens/backspace.svg" alt="Excluir"></td>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td>The Witcher 3: Wild Hunt</td>
+					<td>Ação</td>
+					<td>2015</td>
+
+					<td><img src="imagens/highlighter.svg" alt="editar"> <img
+						src="imagens/backspace.svg" alt="Excluir"></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+</div>
 
 
 
-<%@include file="footer.jsp" %>
+
+
+<%@include file="footer.jsp"%>

@@ -1,31 +1,55 @@
-<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"%>
+<div id="main-content">
+	<h1 id="TituloCadastro">CADASTRO JOGO</h1>
 
-<h1 id="TituloCadastro">CADASTRO JOGO</h1>
+	<form id="Cadastro" method="POST" action="AddGame">
+		<div class="mb-3">
+			<label class="form-label">Nome do Jogo</label> <input type="text"
+				name="titulo" class="form-control" required>
+		</div>
 
-<form id="Cadastro" action="AddGameServlet" method="post">
-  <div class="mb-3">
-    <label for="exampleInputJogo" class="form-label">Nome do Jogo</label>
-    <input type="text" class="form-control" id="exampleInputJogo" name="titulo">
-    <div id="jogoHelp" class="form-text">Adicione o nome do jogo que você quer cadastrar.</div>
-  </div>
-  
-  <div class="mb-3">
-    <label for="exampleInputGenero" class="form-label">Gênero</label>
-    <input type="text" class="form-control" id="exampleInputGenero" name="genero">
-  </div>
-  
-   <div class="mb-3">
-    <label for="exampleInputAno" class="form-label">Ano de Lançamento</label>
-    <input type="number" class="form-control" id="exampleInputAno" name="anoLancamento">
-  </div>
-  
-  <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Sinopse do Jogo</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" name="sinopse" rows="3"></textarea>
+		<div class="mb-3">
+			<label class="form-label">Desenvolvedor</label> <input type="text"
+				name="desenvolvedor" class="form-control" required>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Ano de Lançamento</label> <input
+				type="number" name="anoLancamento" class="form-control" required>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Gênero</label> <input type="text"
+				name="genero" class="form-control" required>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Sinopse</label>
+			<textarea name="sinopse" class="form-control" rows="3" required></textarea>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Idioma</label> <input type="text"
+				name="idioma" class="form-control" required>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Plataforma</label> <input type="text"
+				name="plataforma" class="form-control" required>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Classificação</label> <input type="text"
+				name="classificacao" class="form-control" required>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Avaliação</label> <input type="number"
+				step="0.1" name="avaliacao" class="form-control" required>
+		</div>
+
+		<input class="btn btn-primary" type="submit" value="Cadastrar">
+	</form>
+
 </div>
-
-<input class="btn btn-primary" type="submit" value="Submit" id="BotaoCadastroJogo">
-
-  </form>
-
 <%@include file="footer.jsp"%>

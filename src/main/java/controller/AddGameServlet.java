@@ -7,67 +7,57 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import dao.DaoJogo;
 import model.Jogo;
 
-@WebServlet("/AddGameServlet")
+@WebServlet("/AddGame")
 public class AddGameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static DaoJogo dao = DaoJogo.getInstance();
-    
-    public AddGameServlet() {
-        super();
-    }
-    
-    @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-    			
+
+	public AddGameServlet() {
+		super();
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
-		
+
 		try {
 			String titulo = request.getParameter("titulo");
-			String anoStr = request.getParameter("anoLancamento");
+			String dev = request.getParameter("desenvolvedor");
+			String ano = request.getParameter("anoLancamento");
 			String genero = request.getParameter("genero");
 			String sinopse = request.getParameter("sinopse");
-			int ano = Integer.parseInt(anoStr);
-			
-			System.out.println("Titulo: " + request.getParameter("titulo"));
-			System.out.println("Ano: " + request.getParameter("anoLancamento"));
-			System.out.println("Genero: " + request.getParameter("genero"));
-			System.out.println("Sinopse: " + request.getParameter("sinopse"));
+			String idioma = request.getParameter("idioma");
+			String plataforma = request.getParameter("plataforma");
+			String classificacao = request.getParameter("classificacao");
+			String aval = request.getParameter("avaliacao");
 
-			
-			if (titulo == null || titulo.isEmpty() ||
-				    anoStr == null || anoStr.isEmpty() ||
-				    genero == null || genero.isEmpty() ||
-				    sinopse == null || sinopse.isEmpty()) {
-				
-				 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Todos os campos sao obrigatórios.");
-				    return;
+			if (titulo == null || dev == null || ano == null || genero == null || sinopse == null || idioma == null
+					|| plataforma == null || classificacao == null || aval == null) {
+
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Todos os campos sao obrigatórios.");
+				return;
 			}
-			
-			
-			
-			Jogo novoJogo = new Jogo (titulo, "", ano, genero, sinopse, "", "", "", 0.0);
+			int anoLancamento = Integer.parseInt(ano);
+			double avaliacao = Double.parseDouble(aval);
+			Jogo novoJogo = new Jogo(titulo, dev, anoLancamento, genero, sinopse, idioma, plataforma, classificacao,
+					avaliacao);
 			dao.adicionarJogo(novoJogo);
-			
-			response.sendRedirect("index.jsp");
-			
-			
+			System.out.println("jogos na lista: " + dao.getListaDeJogos().size());
+			response.sendRedirect("listar-jogos");
 		} catch (NumberFormatException e) {
-		    request.setAttribute("erro", "Ano de lançamento inválido.");
-		    request.getRequestDispatcher("adicionarJogo.jsp").forward(request, response);
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Ano de lancamento");
+		} catch (IllegalArgumentException e) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
 		} catch (Exception e) {
-		    e.printStackTrace();
-		    request.setAttribute("erro", "Erro inesperado no servidor.");
-		    request.getRequestDispatcher("adicionarJogo.jsp").forward(request, response);
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Erro inesperado no servidor");
 		}
-		
 
-
-		
 	}
 
 }

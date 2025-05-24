@@ -1,4 +1,8 @@
 <%@ include file="header.jsp" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Jogo" %>
+<%@ page import="dao.DaoJogo" %>
+
 
 <div id="main-content">
   <!-- Seu conteúdo, ex: tabela, botões, etc -->
@@ -48,7 +52,7 @@
   <div class="linha-de-cards">
 
   <div class="card" style="width: 18rem;" id="homemaranha">
-    <img src="https://i0.wp.com/www.guiadoed.com.br/wp-content/uploads/2025/01/Marvels-Spider-Man-2-1.webp?fit=1016%2C571&ssl=1" class="card-img-top" alt="mine">
+    
     <div class="card-body">
       <h5 class="card-title" >Marvel Spider-Man 2</h5>
       <p class="card-text">R$150,00</p>
@@ -57,7 +61,7 @@
   </div>
 
   <div class="card" style="width: 18rem;" id="gta">
-    <img src="https://www.adrenaline.com.br/wp-content/uploads/2024/03/Desenvolvimento-de-GTA-6-esta-atrasado-e-jogo-pode-ser-adiado.jpg" class="card-img-top" alt="stardewvalley">
+    
     <div class="card-body">
       <h5 class="card-title">GTA VI</h5>
       <p class="card-text">R$500,00</p>
@@ -67,13 +71,33 @@
 
 
   <div class="card" style="width: 18rem;" id="witcher">
-    <img src="https://static.cdprojektred.com/cms.cdprojektred.com/crystal-news/f783a9404b08a8f2670f4d9d633b483a9c412e20.png" class="d-block w-100" class="card-img-top" alt="terraria">
+    
     <div class="card-body">
       <h5 class="card-title" id="texto-card">The Witcher 3: Wild Hunt</h5>
       <p class="card-text">R$150,00</p>
       <a href="#" class="btn btn-primary" id="btn-jogos" onclick="window.location.href='VerMais.jsp'">Ver Mais </a>
     </div>
   </div>
+  
+  
+<%
+    List<Jogo> jogos = DaoJogo.getInstance().getListaDeJogos();
+    for (Jogo jogo : jogos) {
+%>
+
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="Imagem do jogo">
+        <div class="card-body">
+            <h5 class="card-title"><%= jogo.getTitulo() %></h5>
+            <p class="card-text">Gênero: <%= jogo.getGenero() %></p>
+            <p class="card-text">Ano: <%= jogo.getAnoLancamento() %></p>
+            <a href="#" class="btn btn-primary">Ver Mais</a>
+        </div>
+    </div>
+
+<%
+    }
+%>
 
   </div>
 </div>

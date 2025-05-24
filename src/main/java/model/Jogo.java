@@ -17,13 +17,14 @@ public class Jogo implements Serializable {
     private double avaliacao;
     
     public Jogo() {
-    	this.id = Jogo.lastId++;
+    	this.id = lastId++;
     }
     
     public Jogo(String titulo, String desenvolvedor, int anoLancamento, String genero,
             String sinopse, String idioma, String plataforma, String classificacao, double avaliacao) {
-    	
-    this.id = Jogo.lastId++;
+
+    this.id = lastId++;
+
     this.titulo = titulo;
     this.desenvolvedor = desenvolvedor;
     this.anoLancamento = anoLancamento;
@@ -37,7 +38,7 @@ public class Jogo implements Serializable {
     
     // getters e setters
     
-    public int getId() {
+    public int getid() {
         return id;
     }
 	public String getTitulo() {

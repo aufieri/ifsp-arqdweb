@@ -22,7 +22,9 @@ public class Jogo implements Serializable {
     
     public Jogo(String titulo, String desenvolvedor, int anoLancamento, String genero,
             String sinopse, String idioma, String plataforma, String classificacao, double avaliacao) {
+
     this.id = lastId++;
+
     this.titulo = titulo;
     this.desenvolvedor = desenvolvedor;
     this.anoLancamento = anoLancamento;
@@ -93,7 +95,5 @@ public class Jogo implements Serializable {
 	public void setAvaliacao(double avaliacao) {
 		this.avaliacao = avaliacao;
 	}
-	public int getId() {
-		return id;
-	}
+
 }

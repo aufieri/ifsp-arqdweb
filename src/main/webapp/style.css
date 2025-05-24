@@ -1,10 +1,20 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-
-#navPrincipal{
-   padding: 2%;
-   background-color: rgb(88, 88, 88);
+/* ===== Navbar ===== */
+#navPrincipal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 0 2%;
+  background-color: rgb(88, 88, 88);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-sizing: border-box;
+  color: rgb(148, 233, 21); 
 }
 
 #navPrincipal .nav-link,
@@ -12,138 +22,96 @@
   color: white;
 }
 
-#navPrincipal .nav-link:hover {
-  color: rgb(148, 233, 21); 
-}
-
-
+/* ===== Carousel ===== */
 #carouselExampleCaptions {
-   max-width: 98.9%;
-   margin: 0 auto;
-   overflow: hidden;
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-   position: relative;
-   height: 600px; 
-  }
-  
-  #carouselExampleCaptions .carousel-item img {
-   height: 100%;
-   width: 100%;
-   object-fit: cover; 
-   background-color: #000;       
-  }
+  max-width: 98.9%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  height: 600px;
+}
 
-  #homemaranha{
+#carouselExampleCaptions .carousel-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  background-color: #000;
+}
+
+/* ===== Seções de Cards ===== */
+#homemaranha,
+#gta,
+#witcher {
   display: flex;
-  justify-content: center;  
-  gap: 2px;                
-  flex-wrap: wrap;          
-  margin: 40px auto
-  }
+  justify-content: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  margin: 40px auto;
+}
 
-  #gta{
+/* Linha de cards dentro das seções */
+.linha-de-cards {
   display: flex;
-  justify-content: center;  
-  gap: 2px;                
-  flex-wrap: wrap;          
-  }
-
-  #witcher{
-    display: flex;
-  justify-content: center;  
-  gap: 2px;                
-  flex-wrap: wrap;          
-  margin: 40px auto
-  }
-
-  .linha-de-cards {
-   display: flex;
-   gap: 20px;
-  }
-
-  #btn-buscar{
-   border-color: rgb(148, 233, 21);
-   color: rgb(148, 233, 21);
-  }
-  #btn-buscar:hover {
-   background-color: rgb(148, 233, 21);
-   color: white;            
-  }
-
-
-#btn-jogos{
-   background-color: rgb(148, 233, 21);
-   border-color: rgb(148, 233, 21);
+  gap: 20px;
 }
 
- #btn-adicionar{
-   background-color: rgb(148, 233, 21);
-   border-color: rgb(148, 233, 21);
-   cursor: pointer;
-   margin-top: 200px; 
-   margin-left: 0;
-   display: block
+/* ===== Botões ===== */
+#btn-buscar {
+  border-color: rgb(148, 233, 21);
+  color: rgb(148, 233, 21);
 }
 
-#tabela{
-   border-collapse: collapse;
-   width: 80%;
-   max-width: 800px;
-   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-   background-color: white;
-   text-align: center;
-   margin-top: 40px;
-   border-color: rgb(148, 233, 21);
-   font-style: unset;
+#btn-buscar:hover {
+  background-color: rgb(148, 233, 21);
+  color: white;
 }
 
-#container{
-    margin-left: 29%;
+#btn-jogos,
+#BotaoCadastroJogo {
+  background-color: rgb(148, 233, 21);
+  border-color: rgb(148, 233, 21);
 }
 
-#TituloCadastro{
-  text-align: Center;
+#btn-adicionar {
+  background-color: rgb(148, 233, 21);
+  border-color: rgb(148, 233, 21);
+  cursor: pointer;
+  margin-top: 200px;
+  margin-left: 0;
+  display: block;
+}
+
+/* ===== Tabela ===== */
+#tabela {
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  text-align: center;
+  margin-top: 40px;
+  border-color: rgb(148, 233, 21);
+  font-style: unset;
+}
+
+/* ===== Containers e Títulos ===== */
+#container {
+  margin-left: 29%;
+}
+
+#TituloCadastro {
+  text-align: center;
   margin-top: 55px;
-  font-style: arial;
+  font-family: Arial, sans-serif; 
 }
 
-#Cadastro{
+#Cadastro {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
   background-color: #f9f9f9;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px
 }
-
-#BotaoCadastroJogo{
-  background-color: rgb(148, 233, 21);
-  border-color: rgb(148, 233, 21);
-}
-
-#sobre-container {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  color: #3a3a3a;
-  font-weight: bold;
-}
-
-h4 {
-  margin-top: 20px;
-  color: #5a5a5a;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-ul li {
-  margin-bottom: 8px;
-}
-

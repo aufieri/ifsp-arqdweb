@@ -16,10 +16,10 @@
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Título</th>
-					<th scope="col">Gênero</th>
+					<th scope="col">TÃ­tulo</th>
+					<th scope="col">GÃªnero</th>
 					<th scope="col">Ano</th>
-					<th scope="col">Ação</th>
+					<th scope="col">AÃ§Ã£o</th>
 				</tr>
 			</thead>
 			<tbody>

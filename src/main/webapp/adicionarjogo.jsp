@@ -14,12 +14,12 @@
 		</div>
 
 		<div class="mb-3">
-			<label class="form-label">Ano de Lançamento</label> <input
+			<label class="form-label">Ano de LanÃ§amento</label> <input
 				type="number" name="anoLancamento" class="form-control" required>
 		</div>
 
 		<div class="mb-3">
-			<label class="form-label">Gênero</label> <input type="text"
+			<label class="form-label">GÃªnero</label> <input type="text"
 				name="genero" class="form-control" required>
 		</div>
 
@@ -39,12 +39,12 @@
 		</div>
 
 		<div class="mb-3">
-			<label class="form-label">Classificação</label> <input type="text"
+			<label class="form-label">ClassificaÃ§Ã£o</label> <input type="text"
 				name="classificacao" class="form-control" required>
 		</div>
 
 		<div class="mb-3">
-			<label class="form-label">Avaliação</label> <input type="number"
+			<label class="form-label">AvaliaÃ§Ã£o</label> <input type="number"
 				step="0.1" name="avaliacao" class="form-control" required>
 		</div>
 

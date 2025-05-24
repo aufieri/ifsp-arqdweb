@@ -19,8 +19,6 @@
 	Boolean loginErro = (Boolean) request.getAttribute("loginErro");
 	String valorUsername = request.getAttribute("username") != null ? (String) request.getAttribute("username") : "";
 	%>
-
-<body>
 	<div class="form-container">
 		<form class="login-form" method="post" action="LoginServlet"
 			novalidate>
@@ -47,7 +45,6 @@
 			</div>
 
 			<button type="submit" class="btn btn-secondary w-100">Entrar</button>
-		</form>
 		</form>
 	</div>
 </body>

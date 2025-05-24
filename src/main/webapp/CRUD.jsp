@@ -1,4 +1,8 @@
 <%@ include file="header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
 
 <div id="main-content">
 	<div class="container" id="container">
@@ -7,6 +11,7 @@
 			id="btn-adicionar" onclick="window.location.href='adicionarjogo.jsp'">Adicionar
 			Jogo</button>
 
+		<p>Tamanho da lista: ${fn:length(jogos)}</p>
 		<table class="table" id="tabela">
 			<thead>
 				<tr>
@@ -18,41 +23,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Marvel Spider Man 2</td>
-					<td>Ação/Aventura</td>
-					<td>2023</td>
-
-					<td><img src="imagens/highlighter.svg" alt="editar"> <img
-						src="imagens/backspace.svg" alt="Excluir"></td>
-
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>GTA IV</td>
-					<td>Ação</td>
-					<td>2025</td>
-
-					<td><img src="imagens/highlighter.svg" alt="editar"> <img
-						src="imagens/backspace.svg" alt="Excluir"></td>
-
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>The Witcher 3: Wild Hunt</td>
-					<td>Ação</td>
-					<td>2015</td>
-
-					<td><img src="imagens/highlighter.svg" alt="editar"> <img
-						src="imagens/backspace.svg" alt="Excluir"></td>
-
-				</tr>
+				<c:forEach var="jogo" items="${jogos}">
+					<tr>
+						<th scope="row">${jogo.id}</th>
+						<td>${jogo.titulo}</td>
+						<td>${jogo.genero}</td>
+						<td>${jogo.anoLancamento}</td>
+						<td><img src="imagens/highlighter.svg" alt="editar"> <img
+							src="imagens/backspace.svg" alt="Excluir"></td>
+					</tr>
+				</c:forEach>
 			</tbody>
+
 		</table>
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </div>
 
 

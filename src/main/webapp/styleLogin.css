@@ -1,38 +1,100 @@
-@charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+/* ===== Navbar ===== */
+#navPrincipal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  padding: 0 2%;
+  background-color: rgb(88, 88, 88);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-sizing: border-box;
+}
 
+/* ===== Body & Layout ===== */
 body {
-    height: 100vh;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f9fa;
-  }
-
-  .login-form {
-    width: 100%;
-    max-width: 400px;
-    padding: 30px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-#navPrincipal{
-	position: fixed;
-  	top: 0;
-  	width: 100%;
-	padding: 2%;
-    background-color: rgb(88, 88, 88);
+  padding-top: 70px; 
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: start; 
+  height: 100vh;
+  margin: 0;
 }
 
-#navPrincipal .nav-link,
-#navPrincipal .navbar-brand {
-  color: white;
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); 
+  padding: 20px;
+  width: 100%;
 }
 
-#navPrincipal .nav-link:hover {
-  color: rgb(148, 233, 21); 
+/* ===== Formulário ===== */
+.login-form {
+  background: white;
+  padding: 40px 35px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  width: 100%;
+  max-width: 400px;
+  transition: box-shadow 0.3s ease;
 }
-  
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ===== Labels e Inputs ===== */
+.form-label {
+  font-weight: 600;
+  color: #3a8a3a;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 2px solid #94d17f;
+  padding: 10px 15px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #3a8a3a;
+  box-shadow: 0 0 6px #3a8a3a;
+  outline: none;
+}
+
+/* ===== Estado inválido ===== */
+.is-invalid {
+  border-color: #d9534f !important;
+  box-shadow: 0 0 6px #d9534f !important;
+}
+
+.invalid-feedback {
+  color: #d9534f;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* ===== Botão ===== */
+.btn-secondary {
+  background-color: #3a8a3a;
+  border-color: #3a8a3a;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #2d6a2d;
+  border-color: #2d6a2d;
+}

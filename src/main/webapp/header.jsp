@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +12,7 @@
 
 <%
     String path = request.getServletPath();
+    model.Usuario usuario = (model.Usuario) session.getAttribute("usuarioLogado");
 %>
 
 <nav class="navbar navbar-expand-lg" id="navPrincipal">
@@ -31,19 +31,16 @@
         <li class="nav-item">
           <a class="nav-link<%= path.contains("SobreSistema.jsp") ? " active" : "" %>" href="SobreSistema.jsp">Sobre o Sistema</a>
         </li>
-        <li class="nav-item">
-          <% if (path.contains("CRUD.jsp")) { %>
-            <a class="nav-link" href="index.jsp">Logout</a>
-          <% } else { %>
-            <a class="nav-link<%= path.contains("login.jsp") ? " active" : "" %>" href="login.jsp">Login</a>
-          <% } %>
-        </li>
       </ul>
 
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit" id="btn-buscar">Buscar</button>
-      </form>
+        <% if (usuario != null) { %>
+          <span class="navbar-text text-white">
+            Bem-vindo, <strong><%= usuario.getUserName() %></strong>!
+          </span>
+          <a class="btn btn-outline-light btn-sm" href="LogoutServlet">Logout</a>
+        <% } else { %>
+          <a class="nav-link<%= path.contains("login.jsp") ? " active" : "" %>" href="login.jsp">Login</a>
+        <% } %>
+      </div>
     </div>
-  </div>
 </nav>

@@ -1,143 +1,142 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
+	;
 
 /* ===== Reset e Estrutura Base ===== */
 html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
 }
 
 body {
-  padding-top: 80px; 
-  box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+	padding-top: 80px;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
 }
 
-/* ===== Navbar ===== */
+/* ===== Barra de Navegação ===== */
 #navPrincipal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  padding: 0 2%;
-  background-color: #222;
-  display: flex;
-  align-items: center;
-  z-index: 1050;
-  box-sizing: border-box;
-  color: rgb(148, 233, 21);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	padding: 0 2%;
+	background-color: #222;
+	display: flex;
+	align-items: center;
+	z-index: 1050;
+	box-sizing: border-box;
+	color: rgb(148, 233, 21);
 }
 
-#navPrincipal .nav-link,
-#navPrincipal .navbar-brand {
-  color: white;
+#navPrincipal .nav-link, #navPrincipal .navbar-brand {
+	color: white;
 }
 
-/* ===== Carousel ===== */
+/* ===== Carrossel ===== */
 #carouselExampleCaptions {
-  max-width: 98.9%;
-  margin: 0 auto;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  position: relative;
-  height: 600px;
+	max-width: 98.9%;
+	margin: 0 auto;
+	overflow: hidden;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	position: relative;
+	height: 600px;
 }
 
 #carouselExampleCaptions .carousel-item img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  background-color: #000;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	background-color: #000;
 }
 
 /* ===== Seções de Cards ===== */
-#homemaranha,
-#gta,
-#witcher {
-  display: flex;
-  justify-content: center;
-  gap: 2px;
-  flex-wrap: wrap;
-  margin: 40px auto;
+#homemaranha, #gta, #witcher {
+	display: flex;
+	justify-content: center;
+	gap: 2px;
+	flex-wrap: wrap;
+	margin: 40px auto;
 }
 
 .linha-de-cards {
-  display: flex;
-  gap: 20px;
+	display: flex;
+	gap: 20px;
 }
 
 /* ===== Botões ===== */
 #btn-buscar {
-  border-color: rgb(148, 233, 21);
-  color: rgb(148, 233, 21);
+	border-color: rgb(148, 233, 21);
+	color: rgb(148, 233, 21);
 }
 
 #btn-buscar:hover {
-  background-color: rgb(148, 233, 21);
-  color: white;
+	background-color: rgb(148, 233, 21);
+	color: white;
 }
 
-#btn-jogos,
-#BotaoCadastroJogo {
-  background-color: rgb(148, 233, 21);
-  border-color: rgb(148, 233, 21);
+#btn-jogos, #BotaoCadastroJogo {
+	background-color: rgb(148, 233, 21);
+	border-color: rgb(148, 233, 21);
 }
 
 #btn-adicionar {
-  background-color: rgb(148, 233, 21);
-  border-color: rgb(148, 233, 21);
-  cursor: pointer;
-  margin-top: 200px;
-  margin-left: 0;
-  display: block;
+	background-color: rgb(148, 233, 21);
+	border-color: rgb(148, 233, 21);
+	cursor: pointer;
+	margin-top: 200px;
+	margin-left: 0;
+	display: block;
 }
 
 /* ===== Tabela ===== */
 #tabela {
-  border-collapse: collapse;
-  width: 80%;
-  max-width: 800px;
-  margin-top: 40px;
-  text-align: center;
-  background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-color: rgb(148, 233, 21);
-  font-style: unset;
+	border-collapse: collapse;
+	width: 80%;
+	max-width: 800px;
+	margin-top: 40px;
+	text-align: center;
+	background-color: white;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	border-color: rgb(148, 233, 21);
+	font-style: unset;
 }
 
 /* ===== Containers e Títulos ===== */
 #container {
-  margin-left: 29%;
+	margin-left: 29%;
 }
 
 #TituloCadastro {
-  text-align: center;
-  margin-top: 55px;
-  font-family: Arial, sans-serif;
+	text-align: center;
+	margin-top: 55px;
+	font-family: Arial, sans-serif;
 }
 
 #Cadastro {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 10px;
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	border-radius: 8px;
+	background-color: #f9f9f9;
+	box-shadow: 0 4px 10px;
 }
 
-/* ===== Footer ===== */
+/* ===== Rodapé ===== */
 footer {
-  background-color: #222;
-  color: white;
-  padding: 20px;
-  text-align: center;
+	background-color: #222;
+	color: white;
+	padding: 20px;
+	text-align: center;
 }
 
-/* ===== Main Content para empurrar o footer ===== */
+/* ===== Conteúdo Principal para empurrar o rodapé ===== */
 #main-content {
-  flex: 1;
+	flex: 1;
 }

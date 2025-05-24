@@ -1,3 +1,24 @@
+<footer class="bg-dark text-white py-4 mt-5 border-top">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+    
+    <p class="mb-3 mb-md-0 col-md-4 text-center text-md-start">
+      © 2025 GameLet, Inc. Todos os direitos reservados.
+    </p>
+
+    <a href="/" class="mb-3 mb-md-0 d-flex align-items-center justify-content-center col-md-4 text-white text-decoration-none" aria-label="Logo">
+      <svg class="bi me-2" width="40" height="32" aria-hidden="true">
+        <use xlink:href="#bootstrap"></use>
+      </svg>
+      <span class="fs-5 fw-bold">GameLet</span>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-center justify-content-md-end">
+      <li class="nav-item"><a href="index.jsp" class="nav-link px-2 text-white">Inicio</a></li>
+      <li class="nav-item"><a href="SobreSistema.jsp" class="nav-link px-2 text-white">Sobre</a></li>
+    </ul>
+
+  </div>
+</footer>
 
 </body>
 </html>

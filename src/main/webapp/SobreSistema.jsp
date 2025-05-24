@@ -1,6 +1,7 @@
 <%@ include file="header.jsp" %>
 
-<div class="container mt-5" id="sobre-container">
+<div id="main-content">
+  <div class="container mt-5" id="sobre-container">
     <h1 class="mb-4 text-center">SOBRE O SISTEMA</h1>
     
     <p><strong>CRUD - Jogos Eletrônicos</strong> é um sistema web desenvolvido para gerenciar um catálogo de jogos eletrônicos. Ele permite que usuários autenticados possam cadastrar, visualizar, editar e excluir jogos.</p>
@@ -29,5 +30,6 @@
       <li>Banco de Dados Relacional (ex: MySQL)</li>
     </ul>
   </div>
-  
-  <%@include file="footer.jsp" %>
+</div>
+
+<%@ include file="footer.jsp" %>

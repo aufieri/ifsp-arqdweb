@@ -5,45 +5,4 @@
 	version="4.0">
 
 	<display-name>Archetype Created Web Application</display-name>
-
-	<servlet>
-		<servlet-name>AddGameServlet</servlet-name>
-		<servlet-class>controller.AddGameServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-		<servlet-name>ViewGameServlet</servlet-name>
-		<servlet-class>controller.ViewGameServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-		<servlet-name>UpdateGameServlet</servlet-name>
-		<servlet-class>controller.UpdateGameServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-		<servlet-name>DeleteGameServlet</servlet-name>
-		<servlet-class>controller.DeleteGameServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>AddGameServlet</servlet-name>
-		<url-pattern>/AddGameServlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>ViewGameServlet</servlet-name>
-		<url-pattern>/ViewGameServlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>UpdateGameServlet</servlet-name>
-		<url-pattern>/UpdateGameServlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>DeleteGameServlet</servlet-name>
-		<url-pattern>/DeleteGameServlet</url-pattern>
-	</servlet-mapping>
-
 </web-app>

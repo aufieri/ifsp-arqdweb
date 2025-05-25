@@ -3,11 +3,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
-    HttpSession sessao = request.getSession(false);
-    if (sessao == null || sessao.getAttribute("usuarioLogado") == null) {
-        response.sendRedirect("login.jsp");
-        return;
-    }
+HttpSession sessao = request.getSession(false);
+if (sessao == null || sessao.getAttribute("usuarioLogado") == null) {
+	response.sendRedirect("login.jsp");
+	return;
+}
 %>
 
 <div id="main-content">
@@ -34,11 +34,13 @@
 						<td>${jogo.titulo}</td>
 						<td>${jogo.genero}</td>
 						<td>${jogo.anoLancamento}</td>
-						<td><img src="imagens/highlighter.svg" alt="editar"> <a
-							href="excluir?id=${jogo.id}"
+						<td><a href="UpdateGame?id=${jogo.id}"> <img
+								src="imagens/highlighter.svg" alt="editar">
+						</a> <a href="excluir?id=${jogo.id}"
 							onclick="return confirm('Tem certeza que deseja excluir o jogo?')">
 								<img src="imagens/backspace.svg" alt="Excluir">
-						</a>
+						</a></td>
+
 					</tr>
 				</c:forEach>
 			</tbody>

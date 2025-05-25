@@ -180,6 +180,35 @@ body {
   background-color: #a5e110;
 }
 
+/* ===== Botão Verde - Nova Classe ===== */
+.btn-verde {
+  background-color: rgb(148, 233, 21);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  user-select: none;
+}
+
+.btn-verde:hover,
+.btn-verde:focus {
+  background-color: #a5e110; /* tom mais claro para hover/focus */
+  outline: none;
+  text-decoration: none;
+}
+
+.btn-verde:active {
+  background-color: #7cc519; /* tom um pouco mais escuro para active */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
 /* ===== Container da tabela e botão ===== */
 /* ===== Tabela Bonita ===== */
 #tabela {

@@ -5,7 +5,7 @@
 <%
 HttpSession sessao = request.getSession(false);
 if (sessao == null || sessao.getAttribute("usuarioLogado") == null) {
-	response.sendRedirect("login.jsp");
+	response.sendRedirect("erro.jsp");
 	return;
 }
 %>

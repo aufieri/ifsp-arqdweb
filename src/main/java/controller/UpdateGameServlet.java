@@ -22,6 +22,8 @@ public class UpdateGameServlet extends HttpServlet {
     // GET para carregar o formulário de edição com os dados do jogo
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	
         String idParam = request.getParameter("id");
         if (idParam == null) {
             response.sendRedirect("listar-jogos");

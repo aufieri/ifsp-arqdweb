@@ -44,7 +44,7 @@
 				%>
 			</div>
 
-			<button type="submit" class="btn btn-secondary w-100">Entrar</button>
+			<button type="submit" class="btn btn-secondary w-100" id="btn-loginentrar">Entrar</button>
 		</form>
 	</div>
 </body>

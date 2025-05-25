@@ -43,6 +43,25 @@ body {
   color: white;
 }
 
+#navPrincipal .nav-link:hover,
+#navPrincipal .navbar-brand:hover {
+  color: rgb(148, 233, 21) !important;
+  text-decoration: none !important;
+}
+
+#navPrincipal .btn-outline-light {
+  color: white;
+  border-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+#navPrincipal .btn-outline-light:hover {
+  background-color: rgb(148, 233, 21);
+  color: white;
+  border-color: rgb(148, 233, 21);
+}
+
+
 /* ===== Carrossel ===== */
 #carouselExampleCaptions {
   max-width: 98.9%;
@@ -93,8 +112,29 @@ body {
 }
 
 .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px; /* espaço mínimo para o conteúdo */
   padding: 15px;
+  box-sizing: border-box;
 }
+
+.card-title {
+  margin-bottom: 10px;
+  /* para limitar linhas, se quiser */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-text {
+  margin-bottom: 10px;
+  flex-grow: 1; /* faz o texto ocupar espaço e empurrar o botão para baixo */
+}
+
 
 /* ===== Botões ===== */
 #btn-buscar {
@@ -107,17 +147,14 @@ body {
   color: white;
 }
 
-.btn-jogos,
-#BotaoCadastroJogo {
+.btn-jogos {
   background-color: rgb(148, 233, 21);
   border: none;
   color: white;
   padding: 10px 20px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 10px;
   border-radius: 5px;
   transition: background 0.3s ease;
+  align-self: flex-start;
 }
 
 #btn-adicionar {
@@ -138,23 +175,55 @@ body {
 }
 
 /* ===== Container da tabela e botão ===== */
-#tabela-container {
-  max-width: 800px;
-  margin: 40px auto;
-  text-align: left;
+/* ===== Tabela Bonita ===== */
+#tabela {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-/* ===== Tabela ===== */
-#tabela {
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-color: rgb(148, 233, 21);
+/* Cabeçalho da tabela */
+#tabela thead {
+  background-color: rgb(148, 233, 21);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
+
+#tabela th, #tabela td {
+  padding: 16px;
+  text-align: center;
+  font-size: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Linhas alternadas */
+#tabela tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover na linha */
+#tabela tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Ícones de ação */
+#tabela img {
+  width: 24px;
+  height: 24px;
+  margin: 0 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#tabela img:hover {
+  transform: scale(1.15);
+}
+
 
 /* ===== Formulário ===== */
 #container {
@@ -185,7 +254,17 @@ footer {
   color: white;
   padding: 20px;
   text-align: center;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
+
+footer a.nav-link:hover,
+footer a.text-white:hover {
+  color: rgb(148, 233, 21) !important;
+  text-decoration: underline !important;
+}
+
+
 
 /* ===== Responsividade ===== */
 @media (max-width: 991px) {
@@ -207,4 +286,19 @@ footer {
     width: 90%;
     font-size: 1rem;
   }
+}
+
+#btn-vermais{
+	border-color: rgb(148, 233, 21);
+    background-color: rgb(148, 233, 21);
+}
+
+#btn-loginentrar{
+	border-color: rgb(148, 233, 21);
+    background-color: rgb(148, 233, 21);
+}
+
+#btn-cadastraraddjogo{
+	border-color: rgb(148, 233, 21);
+    background-color: rgb(148, 233, 21);
 }

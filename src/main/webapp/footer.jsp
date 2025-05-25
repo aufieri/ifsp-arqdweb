@@ -9,7 +9,8 @@
 			class="mb-3 mb-md-0 d-flex align-items-center justify-content-center col-md-4 text-white text-decoration-none"
 			aria-label="Logo"> <svg class="bi me-2" width="40" height="32"
 				aria-hidden="true">
-        <use xlink:href="#bootstrap"></use>
+        <use xlink:href="index.jsp"></use>
+        <img src="imagens/favicon.ico" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
       </svg> <span class="fs-5 fw-bold">GameLet</span>
 		</a>
 

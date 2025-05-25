@@ -53,7 +53,7 @@
 			<input type="file" name="imagem" class="form-control" accept="image/*" required>
 		</div>
 
-		<input class="btn btn-primary" type="submit" value="Cadastrar">
+		<input class="btn btn-primary" type="submit" value="Cadastrar" id="btn-cadastraraddjogo">
 	</form>
 </div>
 <%@ include file="footer.jsp"%>

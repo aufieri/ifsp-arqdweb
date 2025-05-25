@@ -51,7 +51,7 @@ public class AddGameServlet extends HttpServlet {
 				return;
 			}
 
-			// Salvar imagem no servidor
+
 			String caminhoImagem = getServletContext().getRealPath("/imagens");
 			File diretorio = new File(caminhoImagem);
 			if (!diretorio.exists()) {
@@ -62,7 +62,7 @@ public class AddGameServlet extends HttpServlet {
 			int anoLancamento = Integer.parseInt(ano);
 			double avaliacao = Double.parseDouble(aval);
 
-			// Cria objeto com nome da imagem
+
 			Jogo novoJogo = new Jogo(titulo, dev, anoLancamento, genero, sinopse, idioma, plataforma, classificacao,
 					avaliacao, nomeImagem);
 

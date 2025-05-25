@@ -18,7 +18,7 @@
 
 <nav class="navbar navbar-expand-lg" id="navPrincipal">
   <div class="container-fluid">
-  <img src="imagens/favicon.ico" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+    <img src="imagens/favicon.ico" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
     <a class="navbar-brand" href="index.jsp">Gamelet</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,14 +35,20 @@
         </li>
       </ul>
 
-        <% if (usuario != null) { %>
-          <span class="navbar-text text-white">
-            Bem-vindo, <strong><%= usuario.getUserName() %></strong>!
-          </span>
-          <a class="btn btn-outline-light btn-sm" href="LogoutServlet">Logout</a>
-        <% } else { %>
-          <a class="nav-link<%= path.contains("login.jsp") ? " active" : "" %>" href="login.jsp">Login</a>
-        <% } %>
-      </div>
+
+      <form class="d-flex me-3" method="GET" action="buscar-jogos" role="search">
+        <input class="form-control me-2" type="search" name="query" placeholder="Buscar jogo..." aria-label="Buscar">
+        <button class="btn btn-outline-light" type="submit">Buscar</button>
+      </form>
+
+      <% if (usuario != null) { %>
+        <span class="navbar-text text-white me-2">
+          Bem-vindo, <strong><%= usuario.getUserName() %></strong>!
+        </span>
+        <a class="btn btn-outline-light btn-sm" href="LogoutServlet">Logout</a>
+      <% } else { %>
+        <a class="nav-link<%= path.contains("login.jsp") ? " active" : "" %>" href="login.jsp">Login</a>
+      <% } %>
     </div>
+  </div>
 </nav>

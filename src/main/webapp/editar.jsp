@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%
+    if (session.getAttribute("usuarioLogado") == null) {
+        response.sendRedirect("erro.jsp");
+        return;
+    }
+%>
+
 <%@ include file="header.jsp"%>
 
 <div id="main-content">
@@ -18,12 +27,12 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Ano de Lançamento</label>
+            <label class="form-label">Ano de LanÃ§amento</label>
             <input type="number" name="anoLancamento" class="form-control" required value="${jogo.anoLancamento}">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Gênero</label>
+            <label class="form-label">GÃªnero</label>
             <input type="text" name="genero" class="form-control" required value="${jogo.genero}">
         </div>
 
@@ -43,12 +52,12 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Classificação</label>
+            <label class="form-label">ClassificaÃ§Ã£o</label>
             <input type="text" name="classificacao" class="form-control" required value="${jogo.classificacao}">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Avaliação</label>
+            <label class="form-label">AvaliaÃ§Ã£o</label>
             <input type="number" step="0.1" name="avaliacao" class="form-control" required value="${jogo.avaliacao}">
         </div>
 

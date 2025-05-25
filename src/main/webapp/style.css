@@ -78,6 +78,15 @@ body {
   justify-content: space-between;
 }
 
+/* Aqui: força tamanho fixo para todas as imagens dos cards */
+.card-img-top {
+  width: 100%;
+  height: 350px;       /* altura fixa, ajuste conforme preferir */
+  object-fit: cover;   /* cobre a área sem distorcer */
+  object-position: center;
+  display: block;
+}
+
 .card-body {
   padding: 15px;
 }

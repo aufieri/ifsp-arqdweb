@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="style.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
@@ -17,6 +18,7 @@
 
 <nav class="navbar navbar-expand-lg" id="navPrincipal">
   <div class="container-fluid">
+  <img src="imagens/favicon.ico" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
     <a class="navbar-brand" href="index.jsp">Gamelet</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

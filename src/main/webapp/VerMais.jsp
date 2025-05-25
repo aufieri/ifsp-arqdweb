@@ -36,7 +36,7 @@
             <p><strong>Plataforma:</strong> <%= jogo.getPlataforma() %></p>
             <p><strong>Avaliação:</strong> <%= jogo.getAvaliacao() %></p>
             <p><strong>Sinopse:</strong> <%= jogo.getSinopse() %></p>
-            <a href="index.jsp" class="btn btn-secondary mt-3">Voltar</a>
+            <a href="index.jsp" class="btn btn-secondary mt-3" id="btn-vermais">Voltar</a>
         </div>
     </div>
 </div>

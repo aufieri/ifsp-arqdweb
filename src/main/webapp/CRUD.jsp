@@ -28,8 +28,11 @@
 						<td>${jogo.titulo}</td>
 						<td>${jogo.genero}</td>
 						<td>${jogo.anoLancamento}</td>
-						<td><img src="imagens/highlighter.svg" alt="editar"> <img
-							src="imagens/backspace.svg" alt="Excluir"></td>
+						<td><img src="imagens/highlighter.svg" alt="editar"> <a
+							href="excluir?id=${jogo.id}"
+							onclick="return confirm('Tem certeza que deseja excluir o jogo?')">
+								<img src="imagens/backspace.svg" alt="Excluir">
+						</a>
 					</tr>
 				</c:forEach>
 			</tbody>

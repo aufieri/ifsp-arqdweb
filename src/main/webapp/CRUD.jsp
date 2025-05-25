@@ -11,15 +11,14 @@
 			id="btn-adicionar" onclick="window.location.href='adicionarjogo.jsp'">Adicionar
 			Jogo</button>
 
-		<p>Tamanho da lista: ${fn:length(jogos)}</p>
 		<table class="table" id="tabela">
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">TÃ­tulo</th>
-					<th scope="col">GÃªnero</th>
+					<th scope="col">Titulo</th>
+					<th scope="col">Gênero</th>
 					<th scope="col">Ano</th>
-					<th scope="col">AÃ§Ã£o</th>
+					<th scope="col">Ação</th>
 				</tr>
 			</thead>
 			<tbody>

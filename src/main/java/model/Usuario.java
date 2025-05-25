@@ -3,7 +3,9 @@ package model;
 import java.io.Serializable;
 
 public class Usuario implements Serializable  {
-    private String userName;   
+	
+	private static final long serialVersionUID = 1L;
+	private String userName;   
     private String senha;
     
  // getters e setters

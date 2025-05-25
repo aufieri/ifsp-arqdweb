@@ -17,7 +17,6 @@ public class DeleteGameServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		DaoJogo.getInstance().removerPorId(id);
 
-		// Redireciona de volta para a página CRUD
 		response.sendRedirect("listar-jogos");
 	}
 }

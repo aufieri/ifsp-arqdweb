@@ -11,7 +11,7 @@ public class DaoJogo {
 	private DaoJogo() {
 		this.listaDeJogos = new ArrayList<Jogo>();
 
-		// Dados fixos agora adicionados como registros iniciais
+		// Dados fixos agora com imagem (pode ser vazia ou nome de imagem genérica)
 		listaDeJogos.add(new Jogo(
 			"Marvel Spider-Man 2", 
 			"Insomniac Games", 
@@ -21,7 +21,8 @@ public class DaoJogo {
 			"Português", 
 			"PlayStation 5", 
 			"16 anos", 
-			4.9
+			4.9,
+			"spiderman2.jpg" // imagem fictícia
 		));
 		
 		listaDeJogos.add(new Jogo(
@@ -33,7 +34,8 @@ public class DaoJogo {
 			"Inglês", 
 			"PlayStation 5, Xbox Series X/S, PC", 
 			"18 anos", 
-			5.0
+			5.0,
+			"gtavi.jpg"
 		));
 
 		listaDeJogos.add(new Jogo(
@@ -45,7 +47,8 @@ public class DaoJogo {
 			"Português", 
 			"PC, PS4, Xbox One, Switch", 
 			"18 anos", 
-			4.8
+			4.8,
+			"witcher3.jpg"
 		));
 	}
 

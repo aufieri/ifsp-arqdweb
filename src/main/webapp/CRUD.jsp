@@ -1,6 +1,5 @@
 <%@ include file="header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 
 
@@ -11,7 +10,7 @@
 			id="btn-adicionar" onclick="window.location.href='adicionarjogo.jsp'">Adicionar
 			Jogo</button>
 
-		<p>Tamanho da lista: ${fn:length(jogos)}</p>
+	
 		<table class="table" id="tabela">
 			<thead>
 				<tr>

@@ -57,6 +57,8 @@
 		for (Jogo jogo : jogos) {
 		%>
 		<div class="card">
+			<img src="imagens/<%=jogo.getNomeImagem()%>" class="card-img-top"
+				alt="<%=jogo.getTitulo()%>">
 			<div class="card-body">
 				<h5 class="card-title"><%=jogo.getTitulo()%></h5>
 				<p class="card-text">R$150,00</p>
@@ -64,6 +66,7 @@
 					Mais</a>
 			</div>
 		</div>
+
 		<%
 		}
 		%>

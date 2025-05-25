@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Jogo implements Serializable {
 
-
 	private static final long serialVersionUID = 1L;
 	public static int lastId = 0;
+
 	private int id;
 	private String titulo;
 	private String desenvolvedor;
@@ -17,14 +17,14 @@ public class Jogo implements Serializable {
 	private String plataforma;
 	private String classificacao;
 	private double avaliacao;
+	private String nomeImagem; // Novo campo para armazenar o nome da imagem
 
 	public Jogo() {
 		this.id = Jogo.lastId++;
 	}
 
-	public Jogo(String titulo, String desenvolvedor, int anoLancamento, String genero, String sinopse, String idioma,
-			String plataforma, String classificacao, double avaliacao) {
-
+	public Jogo(String titulo, String desenvolvedor, int anoLancamento, String genero, String sinopse,
+				String idioma, String plataforma, String classificacao, double avaliacao, String nomeImagem) {
 		this.id = Jogo.lastId++;
 		this.titulo = titulo;
 		this.desenvolvedor = desenvolvedor;
@@ -35,9 +35,10 @@ public class Jogo implements Serializable {
 		this.plataforma = plataforma;
 		this.classificacao = classificacao;
 		this.avaliacao = avaliacao;
+		this.nomeImagem = nomeImagem;
 	}
 
-	// getters e setters
+	// Getters e Setters
 
 	public int getId() {
 		return id;
@@ -115,4 +116,11 @@ public class Jogo implements Serializable {
 		this.avaliacao = avaliacao;
 	}
 
+	public String getNomeImagem() {
+		return nomeImagem;
+	}
+
+	public void setNomeImagem(String nomeImagem) {
+		this.nomeImagem = nomeImagem;
+	}
 }

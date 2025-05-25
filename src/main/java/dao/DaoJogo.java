@@ -21,7 +21,8 @@ public class DaoJogo {
             "PC, Xbox, PlayStation, Switch, Mobile", 
             "Livre", 
             4.9,
-            "minecraft.jpg"
+            "minecraft.jpg",
+            120.00 // preço
         ));
         
         listaDeJogos.add(new Jogo(
@@ -34,7 +35,8 @@ public class DaoJogo {
             "PC, PlayStation 3, PlayStation 4, Xbox 360, Xbox One", 
             "18 anos", 
             5.0,
-            "gtav.png"
+            "gtav.png",
+            250.00 // preço
         ));
 
         listaDeJogos.add(new Jogo(
@@ -47,7 +49,8 @@ public class DaoJogo {
             "PC, PS4, Xbox One, Switch", 
             "18 anos", 
             4.8,
-            "tw3.jpg"
+            "tw3.jpg",
+            180.00 // preço
         ));
     }
 
@@ -91,7 +94,6 @@ public class DaoJogo {
         return false;
     }
 
-    // Busca pelo título (contém, case insensitive)
     public ArrayList<Jogo> buscarPorTitulo(String termo) {
         ArrayList<Jogo> resultados = new ArrayList<>();
         if (termo == null || termo.trim().isEmpty()) {

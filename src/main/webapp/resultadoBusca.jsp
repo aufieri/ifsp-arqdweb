@@ -36,7 +36,7 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Avaliação: <%= jogo.getAvaliacao() %> / 5.0</small><br>
-                            <a href="detalhesJogo.jsp?id=<%= jogo.getId() %>" class="btn btn-primary btn-sm mt-2" id="btn-vermais">Ver detalhes</a>
+                            <a href="VerMais.jsp?id=<%= jogo.getId() %>" class="btn btn-primary btn-sm mt-2" id="btn-vermais">Ver detalhes</a>
                         </div>
                     </div>
                 </div>

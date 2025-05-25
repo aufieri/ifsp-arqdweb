@@ -58,6 +58,12 @@
 			<input type="number" step="0.1" name="avaliacao" class="form-control" required>
 		</div>
 
+		<!-- Novo campo Preço -->
+		<div class="mb-3">
+			<label class="form-label">Preço (R$)</label>
+			<input type="number" step="0.01" min="0" name="preco" class="form-control" required>
+		</div>
+
 		<div class="mb-3">
 			<label class="form-label">Imagem do Jogo</label>
 			<input type="file" name="imagem" class="form-control" accept="image/*" required>

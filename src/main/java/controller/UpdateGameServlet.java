@@ -6,6 +6,9 @@ import model.Jogo;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.servlet.http.Part;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -22,8 +25,7 @@ public class UpdateGameServlet extends HttpServlet {
     // GET para carregar o formulário de edição com os dados do jogo
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	
+
         String idParam = request.getParameter("id");
         if (idParam == null) {
             response.sendRedirect("listar-jogos");
@@ -76,12 +78,19 @@ public class UpdateGameServlet extends HttpServlet {
             jogo.setClassificacao(request.getParameter("classificacao"));
             jogo.setAvaliacao(Double.parseDouble(request.getParameter("avaliacao")));
 
+            // Novo: Atualizar o preço
+            String precoParam = request.getParameter("preco");
+            if (precoParam != null && !precoParam.isEmpty()) {
+                double preco = Double.parseDouble(precoParam);
+                jogo.setPreco(preco);
+            }
+
             // Tratar upload de imagem (se houver)
             Part filePart = request.getPart("imagem");
             if (filePart != null && filePart.getSize() > 0) {
                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
                 String applicationPath = request.getServletContext().getRealPath("");
-                String uploadPath = applicationPath + UPLOAD_DIR;
+                String uploadPath = applicationPath + UPLOAD_DIR + File.separator;
                 Path uploadDirPath = Paths.get(uploadPath);
 
                 if (!Files.exists(uploadDirPath)) {

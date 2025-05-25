@@ -2,10 +2,17 @@
 <%@ page import="java.util.List"%>
 <%@ page import="model.Jogo"%>
 <%@ page import="dao.DaoJogo"%>
+<%@ page import="java.text.NumberFormat"%>
+<%@ page import="java.util.Locale"%>
 
 <%
 HttpSession sessao = request.getSession(false);
 boolean logado = (sessao != null && sessao.getAttribute("usuarioLogado") != null);
+
+// Instanciar formatador de moeda brasileira
+NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+
+List<Jogo> jogos = DaoJogo.getInstance().getListaDeJogos();
 %>
 
 <div id="EditandoCarrossel">
@@ -69,10 +76,7 @@ boolean logado = (sessao != null && sessao.getAttribute("usuarioLogado") != null
 		</div>
 		<%
 		}
-		%>
-
-		<%
-		List<Jogo> jogos = DaoJogo.getInstance().getListaDeJogos();
+		
 		for (Jogo jogo : jogos) {
 		%>
 		<div class="card" style="width: 18rem; cursor: pointer;"
@@ -81,7 +85,7 @@ boolean logado = (sessao != null && sessao.getAttribute("usuarioLogado") != null
 				alt="<%=jogo.getTitulo()%>">
 			<div class="card-body">
 				<h5 class="card-title"><%=jogo.getTitulo()%></h5>
-				<p class="card-text">R$150,00</p>
+				<p class="card-text"><%=formatoMoeda.format(jogo.getPreco())%></p>
 			</div>
 		</div>
 		<%

@@ -60,6 +60,12 @@
             <label class="form-label">Avaliação</label>
             <input type="number" step="0.1" name="avaliacao" class="form-control" required value="${jogo.avaliacao}">
         </div>
+        
+        <!-- Campo Preço adicionado -->
+        <div class="mb-3">
+            <label class="form-label">Preço (R$)</label>
+            <input type="number" step="0.01" name="preco" class="form-control" required value="${jogo.preco}">
+        </div>
 
         <div class="mb-3">
             <label class="form-label">Imagem do Jogo (atual: ${jogo.nomeImagem})</label>

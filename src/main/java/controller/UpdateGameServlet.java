@@ -1,96 +1,79 @@
 package controller;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import dao.DaoJogo;
 import model.Jogo;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @WebServlet("/UpdateGame")
+@javax.servlet.annotation.MultipartConfig // para receber arquivos
 public class UpdateGameServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private static DaoJogo dao = DaoJogo.getInstance();
-       
-    public UpdateGameServlet() {
-        super();
+
+    private static final long serialVersionUID = 1L;
+    private static final String UPLOAD_DIR = "uploads"; // pasta para salvar imagens
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // para capturar os dados enviados (form multipart/form-data)
+        request.setCharacterEncoding("UTF-8");
+
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            DaoJogo dao = DaoJogo.getInstance();
+            Jogo jogo = dao.buscarPorId(id);
+
+            if (jogo == null) {
+                response.sendRedirect("listar-jogos");
+                return;
+            }
+
+            // atualizar campos do jogo
+            jogo.setTitulo(request.getParameter("titulo"));
+            jogo.setDesenvolvedor(request.getParameter("desenvolvedor"));
+            jogo.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
+            jogo.setGenero(request.getParameter("genero"));
+            jogo.setSinopse(request.getParameter("sinopse"));
+            jogo.setIdioma(request.getParameter("idioma"));
+            jogo.setPlataforma(request.getParameter("plataforma"));
+            jogo.setClassificacao(request.getParameter("classificacao"));
+            jogo.setAvaliacao(Double.parseDouble(request.getParameter("avaliacao")));
+
+            // tratar upload de imagem (se houver)
+            Part filePart = request.getPart("imagem"); // campo do formulário
+            if (filePart != null && filePart.getSize() > 0) {
+                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // extrai nome
+                // salvar arquivo na pasta uploads (dentro do contexto)
+                String applicationPath = request.getServletContext().getRealPath("");
+                String uploadPath = applicationPath + UPLOAD_DIR;
+                Path uploadDirPath = Paths.get(uploadPath);
+                if (!Files.exists(uploadDirPath)) {
+                    Files.createDirectories(uploadDirPath);
+                }
+
+                // caminho completo para salvar o arquivo
+                Path filePath = uploadDirPath.resolve(fileName);
+                try (InputStream input = filePart.getInputStream()) {
+                    Files.copy(input, filePath, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                }
+                // atualizar nome da imagem no objeto
+                jogo.setNomeImagem(fileName);
+            }
+
+            // não precisa salvar explicitamente pois o objeto já está na lista
+
+            // redirecionar para listagem após atualizar
+            response.sendRedirect("listar-jogos");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("UpdateGame?id=" + request.getParameter("id"));
+        }
     }
-
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.setCharacterEncoding("UTF-8");
-    	
-    	List<String> generos = Arrays.asList("Ação", "Aventura", "Esporte");
-    	request.setAttribute("generos", generos);
-    	
-    	try {
-    		int id = Integer.parseInt(request.getParameter("id"));
-    		Jogo jogoEncontrado = null;
-    		
-    		for (Jogo jogo1 : dao.getListaDeJogos()) {
-    			if (jogo1.getId() == id) {
-    				jogoEncontrado = jogo1;
-    				break;
-    			}
-    		}
-    		if (jogoEncontrado == null) {
-    			response.sendError(HttpServletResponse.SC_NOT_FOUND, "Jogo nao encontrado");
-    			return;
-    		}
-    		
-    		request.setAttribute("jogo", jogoEncontrado);
-    		request.getRequestDispatcher("change.jsp").forward(request, response);
-    		
-    	}catch (NumberFormatException e) {
-    		response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID Invalido");
-    	}
-	}
-
-    @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    		request.setCharacterEncoding("UTF-8");
-    		
-    		try {
-    			int id = Integer.parseInt(request.getParameter("id"));
-    			String titulo = request.getParameter("titulo");
-    			String desenvolvedor = request.getParameter("desenvolvedor");
-    			int anoLancamento = Integer.parseInt(request.getParameter("anoLancamento"));
-    			String genero = request.getParameter("genero");
-    			String sinopse = request.getParameter("sinopse");
-    			String idioma = request.getParameter("idioma");
-    			String plataforma = request.getParameter("plataforma");
-    			String classificacao = request.getParameter("classificacao");
-    			Double avaliacao = Double.parseDouble(request.getParameter("avaliacao"));
-    			
-    			for (Jogo jogo1 : dao.getListaDeJogos()) {
-    				if (jogo1.getId() == id) {
-    					jogo1.setTitulo(titulo);
-    					jogo1.setDesenvolvedor(desenvolvedor);
-    					jogo1.setAnoLancamento(anoLancamento);
-    					jogo1.setGenero(genero);
-    					jogo1.setSinopse(sinopse);
-    					jogo1.setIdioma(idioma);
-    					jogo1.setPlataforma(plataforma);
-    					jogo1.setClassificacao(classificacao);
-    					jogo1.setAvaliacao(avaliacao);
-    					break;
-    					
-    				}
-    			}
-    			
-    			response.sendRedirect("listar-jogos");
-    			
-    		}catch (Exception e) {
-    			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Erro ao atualizar os jogos");
-    		}
-		
-	}
-
 }

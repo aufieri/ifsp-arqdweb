@@ -61,7 +61,6 @@ body {
   border-color: rgb(148, 233, 21);
 }
 
-
 /* ===== Carrossel ===== */
 #carouselExampleCaptions {
   max-width: 98.9%;
@@ -101,6 +100,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  /* Efeito de transição para hover */
+  transition: transform 0.3s ease;
+}
+
+.linha-de-cards .card:hover {
+  transform: scale(1.05);
+  z-index: 10;
 }
 
 .card-img-top {
@@ -134,7 +141,6 @@ body {
   margin-bottom: 10px;
   flex-grow: 1; /* faz o texto ocupar espaço e empurrar o botão para baixo */
 }
-
 
 /* ===== Botões ===== */
 #btn-buscar {
@@ -224,7 +230,6 @@ body {
   transform: scale(1.15);
 }
 
-
 /* ===== Formulário ===== */
 #container {
   margin: 0 auto;
@@ -264,8 +269,6 @@ footer a.text-white:hover {
   text-decoration: underline !important;
 }
 
-
-
 /* ===== Responsividade ===== */
 @media (max-width: 991px) {
   .linha-de-cards .card {
@@ -289,16 +292,27 @@ footer a.text-white:hover {
 }
 
 #btn-vermais{
-	border-color: rgb(148, 233, 21);
-    background-color: rgb(148, 233, 21);
+  border-color: rgb(148, 233, 21);
+  background-color: rgb(148, 233, 21);
 }
 
 #btn-loginentrar{
-	border-color: rgb(148, 233, 21);
-    background-color: rgb(148, 233, 21);
+  border-color: rgb(148, 233, 21);
+  background-color: rgb(148, 233, 21);
 }
 
 #btn-cadastraraddjogo{
-	border-color: rgb(148, 233, 21);
-    background-color: rgb(148, 233, 21);
+  border-color: rgb(148, 233, 21);
+  background-color: rgb(148, 233, 21);
+}
+
+.card-plus-icon {
+  font-size: 100px;
+  font-weight: bold;
+  color: rgb(148, 233, 21);
+  text-align: center;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

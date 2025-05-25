@@ -53,7 +53,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Imagem do Jogo (atual: ${jogo.imagem})</label>
+            <label class="form-label">Imagem do Jogo (atual: ${jogo.nomeImagem})</label>
             <input type="file" name="imagem" class="form-control" accept="image/*">
         </div>
 

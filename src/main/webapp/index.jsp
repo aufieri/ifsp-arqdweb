@@ -62,8 +62,7 @@
 			<div class="card-body">
 				<h5 class="card-title"><%=jogo.getTitulo()%></h5>
 				<p class="card-text">R$150,00</p>
-				<a href="VerMais.jsp?id=<%=jogo.getId()%>" class="btn-jogos">Ver
-					Mais</a>
+				<a href="VerMais.jsp?id=<%=jogo.getId()%>" class="btn-jogos">Ver Mais</a>
 			</div>
 		</div>
 

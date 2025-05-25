@@ -11,31 +11,30 @@ public class DaoJogo {
 	private DaoJogo() {
 		this.listaDeJogos = new ArrayList<Jogo>();
 
-		// Dados fixos agora com imagem (pode ser vazia ou nome de imagem genérica)
 		listaDeJogos.add(new Jogo(
-			"Marvel Spider-Man 2", 
-			"Insomniac Games", 
-			2023, 
-			"Ação e aventura", 
-			"Peter Parker e Miles Morales enfrentam novos desafios em Nova York.", 
-			"Português", 
-			"PlayStation 5", 
-			"16 anos", 
+			"Minecraft", 
+			"Mojang Studios",  
+			2011,              
+			"Ação e Aventura", 
+			"Jogo sandbox de construção e sobrevivência em mundo aberto.", 
+			"Multilíngue", 
+			"PC, Xbox, PlayStation, Switch, Mobile", 
+			"Livre", 
 			4.9,
-			"spiderman2.jpg" // imagem fictícia
+			"minecraft.jpg" 
 		));
 		
 		listaDeJogos.add(new Jogo(
-			"GTA VI", 
+			"GTA V", 
 			"Rockstar Games", 
-			2025, 
+			2013, 
 			"Mundo Aberto", 
-			"Nova geração de crimes e histórias em Vice City.", 
+			"Exploração e ação em Los Santos com três protagonistas.", 
 			"Inglês", 
-			"PlayStation 5, Xbox Series X/S, PC", 
+			"PC, PlayStation 3, PlayStation 4, Xbox 360, Xbox One", 
 			"18 anos", 
 			5.0,
-			"gtavi.jpg"
+			"gtav.png"
 		));
 
 		listaDeJogos.add(new Jogo(
@@ -48,7 +47,7 @@ public class DaoJogo {
 			"PC, PS4, Xbox One, Switch", 
 			"18 anos", 
 			4.8,
-			"witcher3.jpg"
+			"tw3.jpg"
 		));
 	}
 

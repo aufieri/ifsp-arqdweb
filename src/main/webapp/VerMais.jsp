@@ -1,19 +1,44 @@
+<%@ page import="model.Jogo" %>
+<%@ page import="dao.DaoJogo" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ include file="header.jsp" %>
 
-<div id="main-content">
+<%
+    String idParam = request.getParameter("id");
+    Jogo jogo = null;
 
-  <div class="card mb-3">
-    <img src="https://cdn.awsli.com.br/800x800/1041/1041512/produto/226289528/marvel-s-spider-man-2-ps5---c-digo-digital-le6ncoe8xw.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Marvel Spider-Man 2</h5>
-      <p class="card-text">Sinopse: Pendure-se, pule e plane com as novas Asas de Teia...</p>
-      <p class="card-text">Valor jogo: R$150,00</p>
-      <p class="card-text">Categoria Jogo: A��o/Aventura</p>
-      <p class="card-text">Compatibilidade: Video-Game e Computador.</p>
-      <p class="card-text"><small class="text-body-secondary">Jogo Adicionado com Sucesso!</small></p>
+    if (idParam != null) {
+        try {
+            int id = Integer.parseInt(idParam);
+            jogo = DaoJogo.getInstance().buscarPorId(id);
+        } catch (NumberFormatException e) {
+            response.sendRedirect("erro.jsp");
+        }
+    }
+
+    if (jogo == null) {
+        response.sendRedirect("erro.jsp");
+    }
+%>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="imagens/<%= jogo.getNomeImagem() %>" class="img-fluid" alt="<%= jogo.getTitulo() %>">
+        </div>
+        <div class="col-md-6">
+            <h2><%= jogo.getTitulo() %></h2>
+            <p><strong>Desenvolvedor:</strong> <%= jogo.getDesenvolvedor() %></p>
+            <p><strong>Ano de Lançamento:</strong> <%= jogo.getAnoLancamento() %></p>
+            <p><strong>Gênero:</strong> <%= jogo.getGenero() %></p>
+            <p><strong>Classificação:</strong> <%= jogo.getClassificacao() %></p>
+            <p><strong>Idioma:</strong> <%= jogo.getIdioma() %></p>
+            <p><strong>Plataforma:</strong> <%= jogo.getPlataforma() %></p>
+            <p><strong>Avaliação:</strong> <%= jogo.getAvaliacao() %></p>
+            <p><strong>Sinopse:</strong> <%= jogo.getSinopse() %></p>
+            <a href="index.jsp" class="btn btn-secondary mt-3">Voltar</a>
+        </div>
     </div>
-  </div>
-
-</div> 
+</div>
 
 <%@ include file="footer.jsp" %>

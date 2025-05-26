@@ -13,7 +13,6 @@
     <h1 id="TituloCadastro">EDITAR JOGO</h1>
 
     <form id="Cadastro" method="POST" action="UpdateGame" enctype="multipart/form-data">
-  
         <input type="hidden" name="id" value="${jogo.id}" />
 
         <div class="mb-3">
@@ -62,8 +61,20 @@
         </div>
 
         <div class="mb-3">
+            <label class="form-label">Preço (R$)</label>
+            <input type="number" step="0.01" name="preco" class="form-control" required value="${jogo.preco}">
+        </div>
+
+        <div class="mb-3">
             <label class="form-label">Imagem do Jogo (atual: ${jogo.nomeImagem})</label>
             <input type="file" name="imagem" class="form-control" accept="image/*">
+        </div>
+
+         <input type="hidden" name="destaque" value="false">
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="lancamento" name="lancamento" ${jogo.lancamento ? "checked" : ""}>
+            <label class="form-check-label" for="lancamento">Lançamento</label>
         </div>
 
         <input class="btn btn-primary" type="submit" value="Atualizar" id="btn-atualizar-jogo">

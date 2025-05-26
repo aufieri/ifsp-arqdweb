@@ -6,6 +6,9 @@ import model.Jogo;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.servlet.http.Part;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -22,8 +25,7 @@ public class UpdateGameServlet extends HttpServlet {
     // GET para carregar o formulário de edição com os dados do jogo
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	
+
         String idParam = request.getParameter("id");
         if (idParam == null) {
             response.sendRedirect("listar-jogos");
@@ -65,7 +67,7 @@ public class UpdateGameServlet extends HttpServlet {
                 return;
             }
 
-            // Atualizar os campos do jogo
+            // Atualizar campos básicos
             jogo.setTitulo(request.getParameter("titulo"));
             jogo.setDesenvolvedor(request.getParameter("desenvolvedor"));
             jogo.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
@@ -76,12 +78,25 @@ public class UpdateGameServlet extends HttpServlet {
             jogo.setClassificacao(request.getParameter("classificacao"));
             jogo.setAvaliacao(Double.parseDouble(request.getParameter("avaliacao")));
 
-            // Tratar upload de imagem (se houver)
+            String precoParam = request.getParameter("preco");
+            if (precoParam != null && !precoParam.isEmpty()) {
+                double preco = Double.parseDouble(precoParam);
+                jogo.setPreco(preco);
+            }
+
+            // ✅ Novos campos: Destaque e Lançamento
+            boolean destaque = request.getParameter("destaque") != null;
+            boolean lancamento = request.getParameter("lancamento") != null;
+
+            jogo.setDestaque(destaque);
+            jogo.setLancamento(lancamento);
+
+            // Upload da nova imagem, se fornecida
             Part filePart = request.getPart("imagem");
             if (filePart != null && filePart.getSize() > 0) {
                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
                 String applicationPath = request.getServletContext().getRealPath("");
-                String uploadPath = applicationPath + UPLOAD_DIR;
+                String uploadPath = applicationPath + UPLOAD_DIR + File.separator;
                 Path uploadDirPath = Paths.get(uploadPath);
 
                 if (!Files.exists(uploadDirPath)) {
@@ -96,12 +111,13 @@ public class UpdateGameServlet extends HttpServlet {
                 jogo.setNomeImagem(fileName);
             }
 
-            // Redireciona para a lista após atualizar
+            // Atualiza o jogo no banco de dados
+            dao.atualizar(jogo);
+
             response.sendRedirect("listar-jogos");
 
         } catch (Exception e) {
             e.printStackTrace();
-            // Caso erro, volta para a página de edição com o id
             response.sendRedirect("UpdateGame?id=" + request.getParameter("id"));
         }
     }

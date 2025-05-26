@@ -18,7 +18,11 @@ public class Jogo implements Serializable {
     private String classificacao;
     private double avaliacao;
     private String nomeImagem;
-    private double preco;  // Novo campo para preço
+    private double preco;
+
+    // Novos campos para flag de destaque e lançamento
+    private boolean destaque;
+    private boolean lancamento;
 
     public Jogo() {
         this.id = Jogo.lastId++;
@@ -26,7 +30,7 @@ public class Jogo implements Serializable {
 
     public Jogo(String titulo, String desenvolvedor, int anoLancamento, String genero, String sinopse,
                 String idioma, String plataforma, String classificacao, double avaliacao,
-                String nomeImagem, double preco) {
+                String nomeImagem, double preco, boolean destaque, boolean lancamento) {
         this.id = Jogo.lastId++;
         this.titulo = titulo;
         this.desenvolvedor = desenvolvedor;
@@ -39,6 +43,8 @@ public class Jogo implements Serializable {
         this.avaliacao = avaliacao;
         this.nomeImagem = nomeImagem;
         this.preco = preco;
+        this.destaque = destaque;
+        this.lancamento = lancamento;
     }
 
     // Getters e Setters
@@ -133,5 +139,21 @@ public class Jogo implements Serializable {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public boolean isDestaque() {
+        return destaque;
+    }
+
+    public void setDestaque(boolean destaque) {
+        this.destaque = destaque;
+    }
+
+    public boolean isLancamento() {
+        return lancamento;
+    }
+
+    public void setLancamento(boolean lancamento) {
+        this.lancamento = lancamento;
     }
 }

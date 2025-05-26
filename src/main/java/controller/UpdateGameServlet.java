@@ -67,7 +67,7 @@ public class UpdateGameServlet extends HttpServlet {
                 return;
             }
 
-            // Atualizar os campos do jogo
+            // Atualizar campos básicos
             jogo.setTitulo(request.getParameter("titulo"));
             jogo.setDesenvolvedor(request.getParameter("desenvolvedor"));
             jogo.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
@@ -78,14 +78,20 @@ public class UpdateGameServlet extends HttpServlet {
             jogo.setClassificacao(request.getParameter("classificacao"));
             jogo.setAvaliacao(Double.parseDouble(request.getParameter("avaliacao")));
 
-            // Novo: Atualizar o preço
             String precoParam = request.getParameter("preco");
             if (precoParam != null && !precoParam.isEmpty()) {
                 double preco = Double.parseDouble(precoParam);
                 jogo.setPreco(preco);
             }
 
-            // Tratar upload de imagem (se houver)
+            // ✅ Novos campos: Destaque e Lançamento
+            boolean destaque = request.getParameter("destaque") != null;
+            boolean lancamento = request.getParameter("lancamento") != null;
+
+            jogo.setDestaque(destaque);
+            jogo.setLancamento(lancamento);
+
+            // Upload da nova imagem, se fornecida
             Part filePart = request.getPart("imagem");
             if (filePart != null && filePart.getSize() > 0) {
                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -105,12 +111,13 @@ public class UpdateGameServlet extends HttpServlet {
                 jogo.setNomeImagem(fileName);
             }
 
-            // Redireciona para a lista após atualizar
+            // Atualiza o jogo no banco de dados
+            dao.atualizar(jogo);
+
             response.sendRedirect("listar-jogos");
 
         } catch (Exception e) {
             e.printStackTrace();
-            // Caso erro, volta para a página de edição com o id
             response.sendRedirect("UpdateGame?id=" + request.getParameter("id"));
         }
     }

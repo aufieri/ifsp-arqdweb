@@ -22,7 +22,9 @@ public class DaoJogo {
             "Livre", 
             4.9,
             "minecraft.jpg",
-            120.00 // preço
+            120.00, 
+            false,   
+            true   
         ));
         
         listaDeJogos.add(new Jogo(
@@ -36,7 +38,9 @@ public class DaoJogo {
             "18 anos", 
             5.0,
             "gtav.png",
-            250.00 // preço
+            250.00, 
+            true,   
+            false   
         ));
 
         listaDeJogos.add(new Jogo(
@@ -50,7 +54,9 @@ public class DaoJogo {
             "18 anos", 
             4.8,
             "tw3.jpg",
-            180.00 // preço
+            180.00, 
+            true,  
+            true    
         ));
     }
 
@@ -107,5 +113,36 @@ public class DaoJogo {
             }
         }
         return resultados;
+    }
+
+    public ArrayList<Jogo> getJogosDestaque() {
+        ArrayList<Jogo> destaques = new ArrayList<>();
+        for (Jogo jogo : listaDeJogos) {
+            if (jogo.isDestaque()) {
+                destaques.add(jogo);
+            }
+        }
+        return destaques;
+    }
+
+    public ArrayList<Jogo> getJogosLancamento() {
+        ArrayList<Jogo> lancamentos = new ArrayList<>();
+        for (Jogo jogo : listaDeJogos) {
+            if (jogo.isLancamento()) {
+                lancamentos.add(jogo);
+            }
+        }
+        return lancamentos;
+    }
+
+
+    public boolean atualizar(Jogo jogoAtualizado) {
+        for (int i = 0; i < listaDeJogos.size(); i++) {
+            if (listaDeJogos.get(i).getId() == jogoAtualizado.getId()) {
+                listaDeJogos.set(i, jogoAtualizado);
+                return true;
+            }
+        }
+        return false;
     }
 }

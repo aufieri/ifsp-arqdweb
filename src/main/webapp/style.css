@@ -101,6 +101,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .linha-de-cards .card:hover {
@@ -203,7 +204,7 @@ body {
 
 .btn-verde:active {
   background-color: #7cc519;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== Container da tabela e botão ===== */
@@ -224,7 +225,8 @@ body {
   letter-spacing: 0.05em;
 }
 
-#tabela th, #tabela td {
+#tabela th,
+#tabela td {
   padding: 16px;
   text-align: center;
   font-size: 15px;
@@ -301,11 +303,9 @@ footer a.text-white:hover {
   .linha-de-cards .card {
     flex: 0 0 100%;
   }
-
   #tabela {
     width: 95%;
   }
-
   #btn-adicionar {
     width: 90%;
     font-size: 1rem;
@@ -331,10 +331,19 @@ footer a.text-white:hover {
 }
 
 /* ===== Imagem Detalhes do Jogo ===== */
-.img-detalhe-jogo {
-  max-height: 500px;
+.img-detalhes-jogo {
   width: 100%;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  object-fit: cover;
 }
+
+/* ===== Ajustes finais ===== */
+* {
+  box-sizing: border-box;
+}
+

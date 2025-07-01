@@ -2,7 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
+<%
+HttpSession sessao = request.getSession(false);
+if (sessao == null || sessao.getAttribute("usuarioLogado") == null) {
+	response.sendRedirect("erro.jsp");
+	return;
+}
+%>
 
 <div id="main-content">
 	<div class="container" id="container">
@@ -28,24 +34,21 @@
 						<td>${jogo.titulo}</td>
 						<td>${jogo.genero}</td>
 						<td>${jogo.anoLancamento}</td>
-						<td><img src="imagens/highlighter.svg" alt="editar"> <a
-							href="excluir?id=${jogo.id}"
+						<td><a href="UpdateGame?id=${jogo.id}"> <img
+								src="imagens/highlighter.svg" alt="editar">
+						</a> <a href="excluir?id=${jogo.id}"
 							onclick="return confirm('Tem certeza que deseja excluir o jogo?')">
 								<img src="imagens/backspace.svg" alt="Excluir">
-						</a>
+						</a></td>
+
 					</tr>
 				</c:forEach>
 			</tbody>
-
 		</table>
 	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </div>
-
-
-
-
 
 <%@include file="footer.jsp"%>

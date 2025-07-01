@@ -14,6 +14,16 @@ public class DeleteGameServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// Verifica se o usuário está logado
+		HttpSession session = request.getSession(false); // false evita criar uma nova sessão se não existir
+
+		if (session == null || session.getAttribute("usuarioLogado") == null) {
+			// Redireciona para uma página de erro ou login
+			response.sendRedirect("erro.jsp"); // ou "login.jsp"
+			return;
+		}
+
+		// Executa a exclusão se estiver logado
 		int id = Integer.parseInt(request.getParameter("id"));
 		DaoJogo.getInstance().removerPorId(id);
 

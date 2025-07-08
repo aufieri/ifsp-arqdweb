@@ -3,12 +3,26 @@ package dao;
 import java.util.ArrayList;
 import model.Jogo;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.*;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+
+
 public class DaoJogo {
 
     private static DaoJogo instance;
     private ArrayList<Jogo> listaDeJogos;
+    private final String json = "jogos.json";
+
 
     private DaoJogo() {
+    	this.listaDeJogos = carregarJogosDoArquivo();
+    	
         this.listaDeJogos = new ArrayList<Jogo>();
 
         listaDeJogos.add(new Jogo(
@@ -58,6 +72,8 @@ public class DaoJogo {
             true,  
             true    
         ));
+        
+        salvarJogosNoArquivo(listaDeJogos);
     }
 
     public static DaoJogo getInstance() {
@@ -65,6 +81,25 @@ public class DaoJogo {
             instance = new DaoJogo();
         }
         return instance;
+    }
+    
+    private ArrayList<Jogo> carregarJogosDoArquivo() {
+        try (Reader reader = new FileReader(json, StandardCharsets.UTF_8)) {
+            Gson gson = new Gson();
+            Type tipoLista = new TypeToken<ArrayList<Jogo>>() {}.getType();
+            return gson.fromJson(reader, tipoLista);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    private void salvarJogosNoArquivo(ArrayList<Jogo> lista) {
+        try (Writer writer = new FileWriter(json, StandardCharsets.UTF_8)) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            gson.toJson(lista, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Jogo> getListaDeJogos() {
@@ -76,11 +111,15 @@ public class DaoJogo {
     }
 
     public boolean adicionarJogo(Jogo jogo) {
-        return listaDeJogos.add(jogo);
+    	boolean sucesso = listaDeJogos.add(jogo);
+        if (sucesso) salvarJogosNoArquivo(listaDeJogos);
+        return sucesso;
     }
 
     public boolean removerJogo(Jogo jogo) {
-        return listaDeJogos.remove(jogo);
+    	  boolean sucesso = listaDeJogos.remove(jogo);
+    	    if (sucesso) salvarJogosNoArquivo(listaDeJogos);
+    	    return sucesso;
     }
 
     public Jogo buscarPorId(int id) {
@@ -140,9 +179,11 @@ public class DaoJogo {
         for (int i = 0; i < listaDeJogos.size(); i++) {
             if (listaDeJogos.get(i).getId() == jogoAtualizado.getId()) {
                 listaDeJogos.set(i, jogoAtualizado);
+                salvarJogosNoArquivo(listaDeJogos);
                 return true;
             }
         }
         return false;
     }
+    
 }

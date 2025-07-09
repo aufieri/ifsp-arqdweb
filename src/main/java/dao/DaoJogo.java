@@ -22,7 +22,7 @@ public class DaoJogo {
 
     private DaoJogo() {
     	this.listaDeJogos = carregarJogosDoArquivo();
-    	
+     	
         this.listaDeJogos = new ArrayList<Jogo>();
 
         listaDeJogos.add(new Jogo(

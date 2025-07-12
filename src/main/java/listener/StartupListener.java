@@ -19,7 +19,7 @@ public class StartupListener implements ServletContextListener {
         if (dao.getUsuarios().isEmpty()) {
             System.out.println("[LISTENER] Nenhum usuário encontrado, criando usuário admin.");
 
-            Usuario admin = new Usuario(0, "admin", "admin@examplo.com", "123", "admin");
+            Usuario admin = new Usuario(0, "admin", "admin@exemplo.com", "123", "admin");
             dao.adicionarUsuario(admin);
 
             System.out.println("[LISTENER] Usuário admin criado com sucesso.");

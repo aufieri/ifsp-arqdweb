@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
@@ -12,21 +12,16 @@
 <title>Gamelet</title>
 </head>
 <body class="text-white" style="background-color: #10101D;">
-	<!-- Adicinando NavBar com API -->
+
+	<!-- Header dinâmico -->
 	<div id="header"></div>
 
-	<script>
-    fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header').innerHTML = data;
-      });
-  </script>
+	<!-- Saudação do usuário -->
+	<div id="saudacao-usuario"
+		style="text-align: right; padding: 10px 30px 0 0; font-weight: bold; color: rgb(148, 233, 21);">
+	</div>
 
 	<main>
-		<div id="saudacao-usuario"
-			style="text-align: right; padding: 10px 30px 0 0; font-weight: bold; color: rgb(148, 233, 21);"></div>
-
 		<h1 id="lancamentos" class="text-center my-4">Lançamentos</h1>
 
 		<div id="EditandoCarrossel" class="container mb-5">
@@ -67,13 +62,9 @@
 
 		<div class="lista-jogos container">
 			<h2 class="text-center mb-4 text-uppercase"
-				style="font-family: 'Open Sans', sans-serif; letter-spacing: 0.1em;">
-				Jogos</h2>
+				style="font-family: 'Open Sans', sans-serif; letter-spacing: 0.1em;">Jogos</h2>
 			<div
 				class="linha-de-cards d-flex flex-wrap justify-content-center gap-4">
-
-				<!-- Simulando usuário logado -->
-				<!-- Lista de jogos simulada -->
 
 				<div class="card" style="width: 18rem; cursor: pointer;"
 					onclick="location.href='VerMais.html?id=2'">
@@ -86,7 +77,7 @@
 
 				<div class="card" style="width: 18rem; cursor: pointer;"
 					onclick="location.href='VerMais.html?id=3'">
-					<img src="imagens/jogo3.jpg" class="card-img-top" alt="minecraft">
+					<img src="imagens/jogo3.jpg" class="card-img-top" alt="Minecraft">
 					<div class="card-body">
 						<h5 class="card-title">Minecraft</h5>
 						<p class="card-text">R$ 99,00</p>
@@ -95,9 +86,10 @@
 
 				<div class="card" style="width: 18rem; cursor: pointer;"
 					onclick="location.href='VerMais.html?id=4'">
-					<img src="imagens/jogo4.jpg" class="card-img-top" alt="st">
+					<img src="imagens/jogo4.jpg" class="card-img-top"
+						alt="Stardew Valley">
 					<div class="card-body">
-						<h5 class="card-title">Stardewvalley</h5>
+						<h5 class="card-title">Stardew Valley</h5>
 						<p class="card-text">R$ 79,90</p>
 					</div>
 				</div>
@@ -106,32 +98,42 @@
 		</div>
 	</main>
 
+	<!-- Footer dinâmico -->
 	<div id="footer"></div>
 
+	<!-- Scripts -->
+	<!-- Script: Header + Footer + Login -->
 	<script>
+    // Carrega o HEADER
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+
+        // Após o header, verifica usuário logado
+        fetch('/ProjetoGames/api/usuario-logado')
+          .then(res => res.json())
+          .then(data => {
+            if (data.nome) {
+              // Saudação no topo
+              document.getElementById('saudacao-usuario').textContent = `Bem-vindo, ${data.nome}`;
+
+              // Trocar botão login por logout
+              const loginLogoutLi = document.getElementById('loginLogoutLink');
+              if (loginLogoutLi) {
+                loginLogoutLi.innerHTML = `<a class="nav-link" href="/ProjetoGames/LogoutServlet">Logout</a>`;
+              }
+            }
+          });
+      });
+
+    // Carrega o FOOTER
     fetch('footer.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('footer').innerHTML = data;
       });
-    
-    fetch('/ProjetoGames/api/usuario-logado')
-    .then(res => res.json())
-    .then(data => {
-      if (data.nome) {
-        const boasVindas = document.createElement('div');
-        boasVindas.textContent = `Bem-vindo, ${data.nome}`;
-        boasVindas.style.textAlign = 'right';
-        boasVindas.style.marginRight = '4%';
-        boasVindas.style.marginBottom = '10px';
-        document.body.insertBefore(boasVindas, document.querySelector('main'));
-      }
-    });
-
   </script>
-  
-
-
 
 </body>
 </html>

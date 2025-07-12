@@ -17,7 +17,20 @@ public class DaoUsuario {
     private final String jsonPath = "C:/data/usuarios.json";
 
     private DaoUsuario() {
+        File arquivo = new File(jsonPath);
+        File parentDir = arquivo.getParentFile();
+
+        if (!parentDir.exists()) {
+            boolean criada = parentDir.mkdirs();
+            if (criada) {
+                System.out.println("[LOG] Pasta criada: " + parentDir.getAbsolutePath());
+            } else {
+                System.out.println("[ERRO] Não foi possível criar a pasta: " + parentDir.getAbsolutePath());
+            }
+        }
+
         usuarios = carregarUsuariosDoArquivo();
+
         if (usuarios == null) {
             usuarios = new ArrayList<>();
             System.out.println("[LOG] Nenhum usuário encontrado. Criando nova lista.");

@@ -1,11 +1,10 @@
 @charset "UTF-8";
 
-@import
-	url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
-	;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 /* ===== Reset e Estrutura Base ===== */
-html, body {
+html,
+body {
 	height: 100%;
 	margin: 0;
 	font-family: 'Open Sans', sans-serif;
@@ -23,12 +22,12 @@ body {
 /* ===== Empurra Rodapé ===== */
 #main-content {
 	flex: 1;
- 
+
 }
 
 /* ======= Faz criar um espaço entre o formulário e o footer na página de Cadastrar Jogo" =======*/
 .form-page {
-  padding-bottom: 60px;
+	padding-bottom: 60px;
 }
 
 
@@ -48,11 +47,13 @@ body {
 	color: rgb(148, 233, 21);
 }
 
-#navPrincipal .nav-link, #navPrincipal .navbar-brand {
+#navPrincipal .nav-link,
+#navPrincipal .navbar-brand {
 	color: white;
 }
 
-#navPrincipal .nav-link:hover, #navPrincipal .navbar-brand:hover {
+#navPrincipal .nav-link:hover,
+#navPrincipal .navbar-brand:hover {
 	color: rgb(148, 233, 21) !important;
 	text-decoration: none !important;
 }
@@ -61,8 +62,7 @@ body {
 	color: white;
 	background-color: rgb(148, 233, 21);
 	border-color: rgb(148, 233, 21);
-	transition: background-color 0.3s ease, color 0.3s ease, border-color
-		0.3s ease;
+	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 #navPrincipal .btn-outline-light:hover {
@@ -72,22 +72,22 @@ body {
 }
 
 #navPrincipal .navbar-brand {
-  color: rgb(148, 233, 21);
-  font-weight: bold;
+	color: rgb(148, 233, 21);
+	font-weight: bold;
 }
 
 /* Menu links */
-#navPrincipal #nav-links{	
-  display: flex;
-  list-style: none;
-  gap: 10px;
-  margin-left: 35%;
+#navPrincipal #nav-links {
+	display: flex;
+	list-style: none;
+	gap: 10px;
+	margin-left: 35%;
 }
 
 #navPrincipal #nav-links {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 
@@ -205,7 +205,8 @@ body {
 	margin-top: 100px;
 }
 
-.btn-jogos:hover, #btn-adicionar:hover {
+.btn-jogos:hover,
+#btn-adicionar:hover {
 	background-color: #a5e110;
 }
 
@@ -226,7 +227,8 @@ body {
 	user-select: none;
 }
 
-.btn-verde:hover, .btn-verde:focus {
+.btn-verde:hover,
+.btn-verde:focus {
 	background-color: #a5e110;
 	outline: none;
 	text-decoration: none;
@@ -255,7 +257,8 @@ body {
 	letter-spacing: 0.05em;
 }
 
-#tabela th, #tabela td {
+#tabela th,
+#tabela td {
 	padding: 16px;
 	text-align: center;
 	font-size: 15px;
@@ -287,7 +290,7 @@ body {
 	margin: 0 auto;
 	max-width: 1000px;
 	padding: 20px;
-	
+
 }
 
 #TituloCadastro {
@@ -318,32 +321,37 @@ footer {
 	background-color: #10101D;
 }
 
-footer a.nav-link:hover, footer a.text-white:hover {
+footer a.nav-link:hover,
+footer a.text-white:hover {
 	color: rgb(148, 233, 21) !important;
 	text-decoration: underline !important;
 }
 
 /* ===== Responsividade ===== */
-@media ( max-width : 991px) {
+@media (max-width : 991px) {
 	.linha-de-cards .card {
 		flex: 0 0 calc(50% - 30px);
 	}
 }
 
-@media ( max-width : 600px) {
+@media (max-width : 600px) {
 	.linha-de-cards .card {
 		flex: 0 0 100%;
 	}
+
 	#tabela {
 		width: 95%;
 	}
+
 	#btn-adicionar {
 		width: 90%;
 		font-size: 1rem;
 	}
 }
 
-#btn-vermais, #btn-loginentrar, #btn-cadastraraddjogo {
+#btn-vermais,
+#btn-loginentrar,
+#btn-cadastraraddjogo {
 	border-color: rgb(148, 233, 21);
 	background-color: rgb(148, 233, 21);
 }
@@ -410,6 +418,3 @@ footer a.nav-link:hover, footer a.text-white:hover {
 	font-weight: 700;
 	letter-spacing: 1px;
 }
-
-
-

@@ -17,12 +17,13 @@ public class DaoJogo {
 
     private static DaoJogo instance;
     private ArrayList<Jogo> listaDeJogos;
-    private final String json = "jogos.json";
+    private final String jsonPath = "C:/data/jogos.json";
+
 
 
     private DaoJogo() {
     	this.listaDeJogos = carregarJogosDoArquivo();
-     if (this.listaDeJogos != null ||  this.listaDeJogos.isEmpty()) {
+     if (this.listaDeJogos == null ||  this.listaDeJogos.isEmpty()) {
         this.listaDeJogos = new ArrayList<Jogo>();
 
         listaDeJogos.add(new Jogo(
@@ -85,7 +86,7 @@ public class DaoJogo {
     }
     
     private ArrayList<Jogo> carregarJogosDoArquivo() {
-        try (Reader reader = new FileReader(json, StandardCharsets.UTF_8)) {
+        try (Reader reader = new FileReader(jsonPath, StandardCharsets.UTF_8)) {
             Gson gson = new Gson();
             Type tipoLista = new TypeToken<ArrayList<Jogo>>() {}.getType();
             return gson.fromJson(reader, tipoLista);
@@ -95,11 +96,27 @@ public class DaoJogo {
     }
 
     private void salvarJogosNoArquivo(ArrayList<Jogo> lista) {
-        try (Writer writer = new FileWriter(json, StandardCharsets.UTF_8)) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(lista, writer);
+        try {
+            File arquivo = new File(jsonPath);
+            File parentDir = arquivo.getParentFile();
+
+            if (!parentDir.exists()) {
+                boolean criada = parentDir.mkdirs();
+                if (criada) {
+                    System.out.println("[LOG] Pasta criada: " + parentDir.getAbsolutePath());
+                } else {
+                    System.out.println("[ERRO] Não foi possível criar a pasta: " + parentDir.getAbsolutePath());
+                }
+            }
+
+            try (Writer writer = new FileWriter(jsonPath, StandardCharsets.UTF_8)) {
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                gson.toJson(lista, writer);
+                System.out.println("[LOG] Jogos salvos com sucesso em: " + jsonPath);
+            }
+
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("[ERRO] Falha ao salvar JSON de jogos: " + e.getMessage());
         }
     }
 

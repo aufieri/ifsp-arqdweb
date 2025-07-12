@@ -1,5 +1,6 @@
 package listener;
 
+import dao.DaoJogo;
 import dao.DaoUsuario;
 import model.Usuario;
 
@@ -26,7 +27,17 @@ public class StartupListener implements ServletContextListener {
         } else {
             System.out.println("[LISTENER] Usuários já existem, não cria admin.");
         }
-    }
+    
+    
+    	DaoJogo daoJogo = DaoJogo.getInstance();
+    	if (daoJogo.getListaDeJogos() == null || daoJogo.getListaDeJogos().isEmpty()) {
+        System.out.println("[LISTENER] Nenhum jogo encontrado, criando jogos padrão.");
+
+        System.out.println("[LISTENER] Jogos carregados com sucesso.");
+    	} else {
+        System.out.println("[LISTENER] Jogos já existem no sistema.");
+    	}
+}
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

@@ -21,7 +21,7 @@ public class DaoJogo {
 
     private DaoJogo() {
     	this.listaDeJogos = carregarJogosDoArquivo();
-     	
+     if (this.listaDeJogos != null ||  this.listaDeJogos.isEmpty()) {
         this.listaDeJogos = new ArrayList<Jogo>();
 
         listaDeJogos.add(new Jogo(
@@ -73,6 +73,7 @@ public class DaoJogo {
         ));
         
         salvarJogosNoArquivo(listaDeJogos);
+     } 
     }
 
     public static DaoJogo getInstance() {

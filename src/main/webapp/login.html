@@ -9,7 +9,7 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-<title>Insert title here</title>
+<title>Gamelet</title>
 </head>
 <body class="text-white" style="background-color: #10101D;">
 
@@ -58,20 +58,26 @@
 				<h2 class="mb-4 text-center" style="color: rgb(148, 233, 21);">Login</h2>
 
 				<div class="mb-3">
-					<input type="text" name="email" id="email"
-						placeholder="Email" class="form-control" required>
+					<input type="text" name="email" id="email" placeholder="Email"
+						class="form-control" required>
 				</div>
 
 				<div class="mb-3">
 					<input type="password" name="senha" id="senha" placeholder="Senha"
 						class="form-control" required>
-					<!-- Mensagem de erro opcional -->
-					<!-- <div class="invalid-feedback d-block">Usuário ou senha incorretos.</div> -->
 				</div>
 
 				<button type="submit" class="btn btn-secondary w-100"
 					id="btn-loginentrar">Entrar</button>
+				<div class="text-center mt-3">
+					<a href="cadastroUsuario.html" class="text-decoration-none text-light">
+						Não tem conta? <span
+						style="color: rgb(148, 233, 21); font-weight: bold;">Cadastre-se</span>
+					</a>
+				</div>
+
 			</form>
+
 		</div>
 	</main>
 
@@ -103,6 +109,16 @@
 		</div>
 	</footer>
 
+	<script>
+		const params = new URLSearchParams(window.location.search);
+		if (params.get("erro") === "1") {
+			const form = document.querySelector(".login-form");
+			const erroDiv = document.createElement("div");
+			erroDiv.className = "alert alert-danger text-center mt-3";
+			erroDiv.textContent = "Usuário ou senha incorretos.";
+			form.appendChild(erroDiv);
+		}
+	</script>
 
 
 </body>

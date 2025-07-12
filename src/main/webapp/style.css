@@ -48,6 +48,17 @@ body {
 	color: rgb(148, 233, 21);
 }
 
+.bem-vindo {
+  color: white;
+  margin-left: 1rem;  /* mesmo que o me-3 do form (aprox 16px) */
+  margin-top: 0.25rem;
+  font-weight: 600;
+  text-align: left;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+
 #navPrincipal .nav-link, #navPrincipal .navbar-brand {
 	color: white;
 }

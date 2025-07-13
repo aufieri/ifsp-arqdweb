@@ -24,50 +24,42 @@
 		</section>
 
 		<!-- Comentários -->
-<section class="comentarios-section mt-5">
-  <h4 class="text-white mb-3">Comentários</h4>
+		<section class="comentarios-section mt-5">
+			<h4 class="text-white mb-3">Comentários</h4>
 
-  <!-- Novo Comentário -->
-  <div class="card bg-dark text-white">
-    <div class="card-body">
-      <h5 class="card-title">Novo Comentário</h5>
-      <form id="comentario-form">
-        <!-- Comentário -->
-        <div class="mb-3">
-          <label for="comentarioTexto" class="form-label">Escreva seu comentário:</label>
-          <textarea class="form-control" id="comentarioTexto" rows="3" required></textarea>
-        </div>
+			<!-- Novo Comentário -->
+			<div class="card bg-dark text-white">
+				<div class="card-body">
+					<h5 class="card-title">Novo Comentário</h5>
+					<form id="Cadastro" method="POST" action="criar-comentario"
+						enctype="multipart/form-data">
+						<textarea id="comentarioTexto" name="comentarioTexto"
+							class="form-control" rows="3" required></textarea>
 
-        <!-- Nota (select dropdown) -->
-        <div class="mb-3">
-          <label for="comentarioNota" class="form-label">Nota:</label>
-          <select class="form-select" id="comentarioNota" required>
-            <option value="" disabled selected>Escolha uma nota</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
+						<select id="comentarioNota" name="comentarioNota"
+							class="form-select" required>
+							<option value="" disabled selected>Escolha uma nota</option>
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
 
-        <!-- Botão -->
-        <button type="submit" class="btn btn-success" style="background-color: rgb(148, 233, 21);">
-          Enviar Comentário
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
+						<button type="submit" class="btn btn-success">Enviar
+							Comentário</button>
+					</form>
 
-
+				</div>
+			</div>
+		</section>
 	</main>
 
 	<div id="footer" class="mt-5"></div>
 
+	<!-- Header/Footer + Login -->
 	<script>
-    // Header e login
     fetch('header.html')
       .then(res => res.text())
       .then(data => {
@@ -88,7 +80,10 @@
     fetch('footer.html')
       .then(res => res.text())
       .then(data => document.getElementById('footer').innerHTML = data);
+  </script>
 
+	<!-- Carregar Detalhes do Jogo -->
+	<script>
     async function carregarDetalhesJogo() {
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id");
@@ -104,25 +99,24 @@
         }
 
         document.getElementById('detalhes-jogo').innerHTML = `
-        	<div class="detalhes-container d-flex flex-wrap p-4 rounded">
-        	  <div class="imagem-col me-4 mb-3">
-        	    <img src="imagens/${jogo.nomeImagem}" class="img-fluid rounded shadow" alt="${jogo.titulo}">
-        	  </div>
-        	  <div class="info-col text-white">
-        	    <h2>${jogo.titulo}</h2>
-        	    <p><strong>Preço:</strong> R$ ${jogo.preco.toFixed(2)}</p>
-        	    <p><strong>Desenvolvedor:</strong> ${jogo.desenvolvedor || 'Não informado'}</p>
-        	    <p><strong>Ano de Lançamento:</strong> ${jogo.anoLancamento || 'Desconhecido'}</p>
-        	    <p><strong>Gênero:</strong> ${jogo.genero || 'Aventura'}</p>
-        	    <p><strong>Classificação:</strong> ${jogo.classificacao || 'Livre'}</p>
-        	    <p><strong>Idioma:</strong> ${jogo.idioma || 'Português'}</p>
-        	    <p><strong>Plataforma:</strong> ${jogo.plataformas?.join(', ') || 'Multiplataforma'}</p>
-        	    <p><strong>Avaliação:</strong> ${jogo.avaliacao || 'Sem avaliações'}</p>
-        	    <p><strong>Sinopse:</strong> ${jogo.sinopse}</p>
-        	    <a href="index.html" class="btn-voltar">Voltar</a>
-        	  </div>
-        	</div>
-
+          <div class="detalhes-container d-flex flex-wrap p-4 rounded">
+            <div class="imagem-col me-4 mb-3">
+              <img src="imagens/${jogo.nomeImagem}" class="img-fluid rounded shadow" alt="${jogo.titulo}">
+            </div>
+            <div class="info-col text-white">
+              <h2>${jogo.titulo}</h2>
+              <p><strong>Preço:</strong> R$ ${jogo.preco.toFixed(2)}</p>
+              <p><strong>Desenvolvedor:</strong> ${jogo.desenvolvedor || 'Não informado'}</p>
+              <p><strong>Ano de Lançamento:</strong> ${jogo.anoLancamento || 'Desconhecido'}</p>
+              <p><strong>Gênero:</strong> ${jogo.genero || 'Aventura'}</p>
+              <p><strong>Classificação:</strong> ${jogo.classificacao || 'Livre'}</p>
+              <p><strong>Idioma:</strong> ${jogo.idioma || 'Português'}</p>
+              <p><strong>Plataforma:</strong> ${jogo.plataformas?.join(', ') || 'Multiplataforma'}</p>
+              <p><strong>Avaliação:</strong> ${jogo.avaliacao || 'Sem avaliações'}</p>
+              <p><strong>Sinopse:</strong> ${jogo.sinopse}</p>
+              <a href="index.html" class="btn-voltar">Voltar</a>
+            </div>
+          </div>
         `;
       } catch (erro) {
         console.error('Erro ao carregar detalhes:', erro);
@@ -131,5 +125,23 @@
 
     carregarDetalhesJogo();
   </script>
+
+	<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const id = new URLSearchParams(window.location.search).get("id");
+
+    if (id) {
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "idJogo";
+      hiddenInput.value = id;
+      document.getElementById("Cadastro").appendChild(hiddenInput);
+    } else {
+      console.error("ID do jogo não encontrado na URL!");
+    }
+  });
+</script>
+
+
 </body>
 </html>

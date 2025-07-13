@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("[LOGIN SERVLET] Login OK para: " + email);
 
 			HttpSession session = request.getSession();
+			System.out.println("Usuário logado: " + usuario);
 			session.setAttribute("usuarioLogado", usuario);
 
 			switch (usuario.getTipo()) {
@@ -38,6 +39,7 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect("index.html");
 					break;
 			}
+
 		} else {
 			System.out.println("[LOGIN SERVLET] Falha no login para: " + email);
 			response.sendRedirect("login.html?erro=1");

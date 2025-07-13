@@ -24,12 +24,12 @@
     <main>
       <div class="container" id="container">
 
-        <button type="button" class="btn btn-primary btn-lg" id="btn-adicionar"
+        <button type="button" class="btn btn-primary btn-lg mb-4" id="btn-adicionar"
           onclick="window.location.href='adicionarjogo.html'">
           Adicionar Jogo
         </button>
 
-        <table class="table" id="tabela">
+        <table class="table table-striped" id="tabela">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -39,32 +39,8 @@
               <th scope="col">Ação</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Exemplo de linha de jogo -->
-            <tr>
-              <th scope="row">1</th>
-              <td>God of War</td>
-              <td>Ação</td>
-              <td>2018</td>
-              <td>
-                <a href="editarjogo.html"><img src="imagens/highlighter.svg" alt="editar"></a>
-                <a href="excluirjogo.html" onclick="return confirm('Tem certeza que deseja excluir o jogo?')">
-                  <img src="imagens/backspace.svg" alt="Excluir">
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>The Witcher 3</td>
-              <td>RPG</td>
-              <td>2015</td>
-              <td>
-                <a href="#"><img src="imagens/highlighter.svg" alt="editar"></a>
-                <a href="#" onclick="return confirm('Tem certeza que deseja excluir o jogo?')">
-                  <img src="imagens/backspace.svg" alt="Excluir">
-                </a>
-              </td>
-            </tr>
+          <tbody id="tabela-jogos">
+            <!-- Jogos serão carregados aqui via JavaScript -->
           </tbody>
         </table>
       </div>
@@ -87,10 +63,7 @@
           .then(res => res.json())
           .then(data => {
             if (data.nome) {
-              // Saudação no topo
               document.getElementById('saudacao-usuario').textContent = `Bem-vindo, ${data.nome}`;
-
-              // Trocar botão login por logout
               const loginLogoutLi = document.getElementById('loginLogoutLink');
               if (loginLogoutLi) {
                 loginLogoutLi.innerHTML = `<a class="nav-link" href="/ProjetoGames/LogoutServlet">Logout</a>`;
@@ -105,6 +78,45 @@
       .then(data => {
         document.getElementById('footer').innerHTML = data;
       });
+
+    // Função para criar linha da tabela
+    function criarLinhaJogo(jogo) {
+      return `
+        <tr>
+          <th scope="row">${jogo.id}</th>
+          <td>${jogo.titulo}</td>
+          <td>${jogo.genero}</td>
+          <td>${jogo.anoLancamento}</td>
+          <td>
+            <a href="editarjogo.html?id=${jogo.id}">
+              <img src="imagens/highlighter.svg" alt="editar">
+            </a>
+            <a href="excluirjogo.html?id=${jogo.id}" onclick="return confirm('Tem certeza que deseja excluir o jogo?')">
+              <img src="imagens/backspace.svg" alt="Excluir">
+            </a>
+          </td>
+        </tr>
+      `;
+    }
+
+    // Função para carregar jogos da API
+    function carregarJogos() {
+      fetch('/ProjetoGames/api/jogos')
+        .then(response => response.json())
+        .then(jogos => {
+          const corpoTabela = document.getElementById('tabela-jogos');
+          corpoTabela.innerHTML = '';
+          jogos.forEach(jogo => {
+            corpoTabela.innerHTML += criarLinhaJogo(jogo);
+          });
+        })
+        .catch(error => {
+          console.error('Erro ao carregar jogos:', error);
+        });
+    }
+
+    // Carrega jogos ao abrir a página
+    carregarJogos();
   </script>
 
 </body>

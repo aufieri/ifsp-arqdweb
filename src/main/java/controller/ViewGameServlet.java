@@ -30,6 +30,6 @@ public class ViewGameServlet extends HttpServlet {
 		}
 
 		request.setAttribute("jogos", dao.getListaDeJogos());
-		request.getRequestDispatcher("CRUD.jsp").forward(request, response);
+		request.getRequestDispatcher("CRUD.html").forward(request, response);
 	}
 }

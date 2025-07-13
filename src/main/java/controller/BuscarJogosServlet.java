@@ -21,8 +21,8 @@ public class BuscarJogosServlet extends HttpServlet {
         String termo = request.getParameter("query");
 
         ArrayList<Jogo> resultados = dao.buscarPorTitulo(termo);
-
+        
         request.setAttribute("resultados", resultados);
-        request.getRequestDispatcher("resultadoBusca.jsp").forward(request, response);
+        request.getRequestDispatcher("resultadoBusca.html").forward(request, response);
     }
 }

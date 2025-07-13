@@ -56,57 +56,93 @@
   <div id="footer"></div>
 
   <script>
-    // Carrega header
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header').innerHTML = data;
-        // Verifica login
-        fetch('/ProjetoGames/api/usuario-logado')
-          .then(res => res.json())
-          .then(data => {
-            if (data.nome) {
-              document.getElementById('saudacao-usuario').textContent = `Bem-vindo, ${data.nome}`;
-              const loginLogoutLi = document.getElementById('loginLogoutLink');
-              if (loginLogoutLi) {
-                loginLogoutLi.innerHTML = `<a class="nav-link" href="/ProjetoGames/LogoutServlet">Logout</a>`;
-              }
+//Carrega header e ativa busca
+  fetch('header.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+
+      // Verifica login
+      fetch('/ProjetoGames/api/usuario-logado')
+        .then(res => res.json())
+        .then(data => {
+          if (data.nome) {
+            document.getElementById('saudacao-usuario').textContent = `Bem-vindo, ${data.nome}`;
+            const loginLogoutLi = document.getElementById('loginLogoutLink');
+            if (loginLogoutLi) {
+              loginLogoutLi.innerHTML = `<a class="nav-link" href="/ProjetoGames/LogoutServlet">Logout</a>`;
             }
-          });
-      });
+          }
+        });
 
-    // Carrega footer
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      });
+      // Ativa a busca do header após o header ser carregado
+      const formBusca = document.getElementById('form-busca');
+      const inputBusca = document.getElementById('input-busca');
+      const container = document.querySelector('.linha-de-cards');
 
-    // Carrega cards dos jogos
+      if (formBusca && inputBusca) {
+        formBusca.addEventListener('submit', function (e) {
+          e.preventDefault(); // Evita reload da página
+          const termo = inputBusca.value.trim();
+
+          if (termo.length === 0) {
+            carregarTodosJogos(); // Se o input estiver vazio, mostra tudo
+            return;
+          }
+
+          fetch(`/ProjetoGames/buscar-jogos?query=${encodeURIComponent(termo)}`)
+            .then(res => res.json())
+            .then(jogos => exibirJogos(jogos))
+            .catch(err => console.error('Erro ao buscar jogos:', err));
+        });
+      }
+    });
+
+  // Carrega footer
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('footer').innerHTML = data;
+    });
+
+  // Função para exibir os jogos (cards)
+  function exibirJogos(jogos) {
+    const container = document.querySelector('.linha-de-cards');
+    container.innerHTML = '';
+
+    if (jogos.length === 0) {
+      container.innerHTML = '<p class="text-light text-center">Nenhum jogo encontrado.</p>';
+      return;
+    }
+
+    jogos.forEach(jogo => {
+      const card = document.createElement('div');
+      card.className = 'card text-dark';
+      card.style.width = '18rem';
+      card.style.cursor = 'pointer';
+      card.onclick = () => window.location.href = `verMais.html?id=${jogo.id}`;
+
+      card.innerHTML = `
+        <img src="imagens/${jogo.nomeImagem}" class="card-img-top" alt="${jogo.titulo}">
+        <div class="card-body">
+          <h5 class="card-title">${jogo.titulo}</h5>
+          <p class="card-text">R$ ${jogo.preco.toFixed(2)}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Carrega todos os jogos no início
+  function carregarTodosJogos() {
     fetch('/ProjetoGames/api/jogos')
       .then(res => res.json())
-      .then(jogos => {
-        const container = document.querySelector('.linha-de-cards');
-        container.innerHTML = '';
+      .then(jogos => exibirJogos(jogos));
+  }
 
-        jogos.forEach(jogo => {
-          const card = document.createElement('div');
-          card.className = 'card text-dark';
-          card.style.width = '18rem';
-          card.style.cursor = 'pointer';
-          card.onclick = () => window.location.href = `verMais.html?id=${jogo.id}`;
+  // Inicialização
+  carregarTodosJogos();
 
-          card.innerHTML = `
-            <img src="imagens/${jogo.nomeImagem}" class="card-img-top" alt="${jogo.titulo}">
-            <div class="card-body">
-              <h5 class="card-title">${jogo.titulo}</h5>
-              <p class="card-text">R$ ${jogo.preco.toFixed(2)}</p>
-            </div>
-          `;
-          container.appendChild(card);
-        });
-      })
-      .catch(error => console.error('Erro ao carregar jogos:', error));
   </script>
 
 </body>

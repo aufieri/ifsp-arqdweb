@@ -527,4 +527,119 @@ footer a.text-white:hover {
 	user-select: none;
 }
 
+/* Card de detalhes do jogo */
+.detalhes-jogo .card {
+  background-color: #1a1a2e;
+  border: 1px solid #2e2e38;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.detalhes-jogo .card:hover {
+  transform: scale(1.01);
+}
+
+.card-img-top {
+  max-height: 6000px;
+  object-fit: cover;
+  width: 100%;
+  border-bottom: 1px solid #2e2e38;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body p {
+  margin-bottom: 8px;
+}
+
+/* Botão Voltar */
+.btn-voltar {
+  background-color: rgb(148, 233, 21);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.btn-voltar:hover {
+  background-color: rgb(120, 200, 10);
+  color: white;
+}
+
+/* Comentários */
+.comentarios-section .card {
+  background-color: #1f1f2e;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.comentarios-section .card-title {
+  font-size: 1.1rem;
+  color: #96ff43;
+  margin-bottom: 10px;
+}
+
+.comentarios-section .btn {
+  margin-right: 10px;
+  font-size: 0.85rem;
+  padding: 5px 10px;
+}
+
+#comentarioTexto {
+  background-color: #121223;
+  color: white;
+  border: 1px solid #444;
+  resize: vertical;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+  border-color: rgb(148, 233, 21);
+  box-shadow: 0 0 5px rgba(148, 233, 21, 0.5);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .detalhes-jogo .card {
+    width: 100%;
+  }
+}
+
+.detalhes-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  background-color: #10101D;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  flex-wrap: wrap;
+}
+
+.imagem-col img {
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.info-col {
+  flex: 1;
+  min-width: 280px;
+}
+
+.info-col h2 {
+  color: rgb(148, 233, 21);
+}
+
+
+
 

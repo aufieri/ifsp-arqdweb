@@ -57,7 +57,7 @@ public class DaoUsuario {
                 return null;
             }
 
-            try (Reader reader = new FileReader(arquivo, StandardCharsets.UTF_8)) {
+            try (Reader reader = new FileReader(arquivo)) {
                 Type tipoLista = new TypeToken<ArrayList<Usuario>>() {}.getType();
                 ArrayList<Usuario> lista = new Gson().fromJson(reader, tipoLista);
                 System.out.println("[LOG] Arquivo JSON carregado com sucesso.");
@@ -79,7 +79,7 @@ public class DaoUsuario {
                 System.out.println("[LOG] Pasta criada: " + parentDir.getAbsolutePath());
             }
 
-            try (Writer writer = new FileWriter(jsonPath, StandardCharsets.UTF_8)) {
+            try (Writer writer = new FileWriter(jsonPath)) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 gson.toJson(usuarios, writer);
                 System.out.println("[LOG] Usuários salvos com sucesso no arquivo JSON.");

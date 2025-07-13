@@ -86,7 +86,7 @@ public class DaoJogo {
     }
     
     private ArrayList<Jogo> carregarJogosDoArquivo() {
-        try (Reader reader = new FileReader(jsonPath, StandardCharsets.UTF_8)) {
+        try (Reader reader = new FileReader(jsonPath)) {
             Gson gson = new Gson();
             Type tipoLista = new TypeToken<ArrayList<Jogo>>() {}.getType();
             return gson.fromJson(reader, tipoLista);
@@ -109,7 +109,7 @@ public class DaoJogo {
                 }
             }
 
-            try (Writer writer = new FileWriter(jsonPath, StandardCharsets.UTF_8)) {
+            try (Writer writer = new FileWriter(jsonPath)) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 gson.toJson(lista, writer);
                 System.out.println("[LOG] Jogos salvos com sucesso em: " + jsonPath);

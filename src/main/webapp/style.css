@@ -1,4 +1,4 @@
-@charset "UTF-8";
+/* @charset "UTF-8"; */
 
 @import
 	url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
@@ -420,6 +420,105 @@ footer a.nav-link:hover, footer a.text-white:hover {
 	margin-bottom: 30px;
 	font-weight: 700;
 	letter-spacing: 1px;
+}
+
+/*----------- DETALHES DO JOGO ----------*/
+.detalhes-jogo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  background-color: #1c1c2e;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.imagem-jogo {
+  width: 600px;
+  height: 900px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.info-jogo {
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-jogo h2 {
+  color: #9cd32e;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .detalhes-jogo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imagem-jogo {
+    width: 100%;
+    height: auto;
+  }
+
+  .info-jogo {
+    width: 100%;
+  }
+}
+
+.botao-link{
+	background-color: rgb(148, 233, 21);
+	border: none;
+	color: white;
+	padding: 10px 10px;
+	border-radius: 5px;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	font-weight: 600;
+	transition: background-color 0.3s ease;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	user-select: none;
+}
+
+.btn-editarComentario{
+	background-color: rgb(148, 233, 21);
+	border: none;
+	color: white;
+	padding: 4px 5px;
+	border-radius: 5px;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	font-weight: 600;
+	transition: background-color 0.3s ease;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	user-select: none;
+}
+
+.btn-excluirComentario{
+	background-color: red;
+	border: none;
+	color: white;
+	padding: 4px 5px;
+	border-radius: 5px;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	font-weight: 600;
+	transition: background-color 0.3s ease;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	user-select: none;
 }
 
 

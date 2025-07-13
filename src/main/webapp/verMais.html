@@ -72,39 +72,44 @@
 
 						<h4 class="text-white mb-3">Comentários</h4>
 
-						<!-- Comentário 1 -->
-						<div class="card bg-dark text-white mb-3">
-							<div class="card-body">
-								<h5 class="card-title">UsuarioAdmin</h5>
-								<p class="card-text">Esse jogo é simplesmente incrível! A
-									narrativa me prendeu do começo ao fim.</p>
-								<button class="btn-editarComentario">Editar</button>
-								<button class="btn-excluirComentario">Excluir</button>
-							</div>
-						</div>
-
-						<!-- Comentário 2 -->
-						<div class="card bg-dark text-white mb-3">
-							<div class="card-body">
-								<h5 class="card-title">UsuarioAdmin</h5>
-								<p class="card-text">Gráficos impressionantes e trilha
-									sonora impecável. Recomendo demais!</p>
-								<button class="btn-editarComentario">Editar</button>
-								<button class="btn-excluirComentario">Excluir</button>
-							</div>
-						</div>
+						<!-- AQUI virão os cards de comentários já existentes;
+       você pode renderizar com JS ou, se preferir, substituir por JSP mais tarde. -->
 
 						<!-- Novo Comentário -->
 						<div class="card bg-dark text-white">
 							<div class="card-body">
 								<h5 class="card-title">Novo Comentário</h5>
-								<form id="comentario-form">
+
+								<!-- FORMULÁRIO: envia direto para o servlet -->
+								<form id="comentario-form"
+									action="/ProjetoGames/criar-comentario" method="POST">
+
+									<!-- id do jogo (preenchido via JS) -->
+									<input type="hidden" name="idJogo" id="campoIdJogo">
+
+									<!-- NOTA -->
+									<div class="mb-3">
+										<label for="comentarioNota" class="form-label">Nota (0
+											a 5):</label> <select class="form-control" id="comentarioNota"
+											name="nota" required>
+											<option value="" disabled selected>Selecione</option>
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+										</select>
+									</div>
+
+									<!-- TEXTO -->
 									<div class="mb-3">
 										<label for="comentarioTexto" class="form-label">Escreva
 											seu comentário:</label>
-										<textarea class="form-control" id="comentarioTexto" rows="3"
-											required></textarea>
+										<textarea class="form-control" id="comentarioTexto"
+											name="texto" rows="3" required></textarea>
 									</div>
+
 									<button type="submit" class="btn btn-success"
 										style="background-color: rgb(148, 233, 21);">Enviar
 										Comentário</button>
@@ -113,6 +118,8 @@
 						</div>
 
 					</div>
+					<!-- /comentarios-section -->
+
 
 
 				</div>
@@ -157,6 +164,7 @@
       .then(data => {
         document.getElementById('footer').innerHTML = data;
       });
+    
   </script>
 </body>
 </html>

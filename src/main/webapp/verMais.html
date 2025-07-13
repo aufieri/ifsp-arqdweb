@@ -1,148 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="style.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Detalhes do Jogo</title>
+  <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body style="background-color: #10101D;">
 
-	<!-- Header dinâmico -->
-	<div id="header"></div>
+<body class="text-white" style="background-color: #10101D;">
+  <div id="header"></div>
+  <div id="saudacao-usuario" style="text-align: right; padding: 10px 30px 0 0; font-weight: bold; color: rgb(148, 233, 21);"></div>
 
-	<!-- Saudação do usuário -->
-	<div id="saudacao-usuario"
-		style="text-align: right; padding: 10px 30px 0 0; font-weight: bold; color: rgb(148, 233, 21);">
-	</div>
+  <main class="container mt-5">
+    <section id="detalhes-jogo" class="detalhes-jogo row justify-content-center">
+      <!-- Conteúdo dinâmico -->
+    </section>
 
-	<div id="main-content" class="form-page">
+    <!-- Comentários -->
+    <section class="comentarios-section mt-5">
+      <h4 class="text-white mb-3">Comentários</h4>
 
-		<main>
+      <!-- Comentário 1 -->
+      <div class="card bg-dark text-white mb-3">
+        <div class="card-body">
+          <h5 class="card-title">UsuarioAdmin</h5>
+          <p class="card-text">Esse jogo é simplesmente incrível! A narrativa me prendeu do começo ao fim.</p>
+          <button class="btn btn-secondary btn-sm">Editar</button>
+          <button class="btn btn-danger btn-sm">Excluir</button>
+        </div>
+      </div>
 
-			<section class="detalhes-jogo">
-				<img src="../imagens/bo2.jpg"
-					alt="Capa de Call of Duty: Black Ops II" class="imagem-jogo">
+      <!-- Comentário 2 -->
+      <div class="card bg-dark text-white mb-3">
+        <div class="card-body">
+          <h5 class="card-title">UsuarioAdmin</h5>
+          <p class="card-text">Gráficos impressionantes e trilha sonora impecável. Recomendo demais!</p>
+          <button class="btn btn-secondary btn-sm">Editar</button>
+          <button class="btn btn-danger btn-sm">Excluir</button>
+        </div>
+      </div>
 
-				<div class="info-jogo">
-					<h2>The Last of Us: Parte II</h2>
-					<p>
-						<strong>Preço:</strong> R$ 119,99
-					</p>
-					<p>
-						<strong>Desenvolvedor:</strong> Naughty Dog
-					</p>
-					<p>
-						<strong>Ano de Lançamento:</strong> 2020
-					</p>
-					<p>
-						<strong>Gênero:</strong> Aventura, Ação
-					</p>
-					<p>
-						<strong>Classificação:</strong> 18 anos
-					</p>
-					<p>
-						<strong>Idioma:</strong> Inglês (com dublagem oficial em
-						português)
-					</p>
-					<p>
-						<strong>Plataforma:</strong> PC, PlayStation 5
-					</p>
-					<p>
-						<strong>Avaliação:</strong> 4.6
-					</p>
-					<p>
-						<strong>Sinopse:</strong> "The Last of Us Part II", acompanha
-						Ellie e Joel cinco anos após os eventos do primeiro jogo, agora
-						vivendo em relativa paz em Jackson, Wyoming. No entanto, a
-						tranquilidade é interrompida por um evento trágico que desencadeia
-						a busca de Ellie por vingança em Seattle..
-					</p>
+      <!-- Novo Comentário -->
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <h5 class="card-title">Novo Comentário</h5>
+          <form id="comentario-form">
+            <div class="mb-3">
+              <label for="comentarioTexto" class="form-label">Escreva seu comentário:</label>
+              <textarea class="form-control" id="comentarioTexto" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success" style="background-color: rgb(148, 233, 21);">Enviar Comentário</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
-					<a href="index.html" class="botao-link">Voltar</a> <br>
+  <div id="footer" class="mt-5"></div>
 
-
-					<!-- Comentários -->
-					<div class="comentarios-section">
-
-						<h4 class="text-white mb-3">Comentários</h4>
-
-						<!-- Comentário 1 -->
-						<div class="card bg-dark text-white mb-3">
-							<div class="card-body">
-								<h5 class="card-title">UsuarioAdmin</h5>
-								<p class="card-text">Esse jogo é simplesmente incrível! A
-									narrativa me prendeu do começo ao fim.</p>
-								<button class="btn-editarComentario">Editar</button>
-								<button class="btn-excluirComentario">Excluir</button>
-							</div>
-						</div>
-
-						<!-- Comentário 2 -->
-						<div class="card bg-dark text-white mb-3">
-							<div class="card-body">
-								<h5 class="card-title">UsuarioAdmin</h5>
-								<p class="card-text">Gráficos impressionantes e trilha
-									sonora impecável. Recomendo demais!</p>
-								<button class="btn-editarComentario">Editar</button>
-								<button class="btn-excluirComentario">Excluir</button>
-							</div>
-						</div>
-
-						<!-- Novo Comentário -->
-						<div class="card bg-dark text-white">
-							<div class="card-body">
-								<h5 class="card-title">Novo Comentário</h5>
-								<form id="comentario-form">
-									<div class="mb-3">
-										<label for="comentarioTexto" class="form-label">Escreva
-											seu comentário:</label>
-										<textarea class="form-control" id="comentarioTexto" rows="3"
-											required></textarea>
-									</div>
-									<button type="submit" class="btn btn-success"
-										style="background-color: rgb(148, 233, 21);">Enviar
-										Comentário</button>
-								</form>
-							</div>
-						</div>
-
-					</div>
-
-
-				</div>
-
-			</section>
-		</main>
-
-
-
-		<!-- Footer dinâmico -->
-		<div id="footer"></div>
-
-		<!-- Scripts -->
-		<!-- Script: Header + Footer + Login -->
-		<script>
-    // Carrega o HEADER
+  <script>
+    // Header e login
     fetch('header.html')
-      .then(response => response.text())
+      .then(res => res.text())
       .then(data => {
         document.getElementById('header').innerHTML = data;
-
-        // Após o header, verifica usuário logado
         fetch('/ProjetoGames/api/usuario-logado')
           .then(res => res.json())
           .then(data => {
             if (data.nome) {
-              // Saudação no topo
               document.getElementById('saudacao-usuario').textContent = `Bem-vindo, ${data.nome}`;
-
-              // Trocar botão login por logout
               const loginLogoutLi = document.getElementById('loginLogoutLink');
               if (loginLogoutLi) {
                 loginLogoutLi.innerHTML = `<a class="nav-link" href="/ProjetoGames/LogoutServlet">Logout</a>`;
@@ -151,12 +79,51 @@
           });
       });
 
-    // Carrega o FOOTER
     fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer').innerHTML = data;
-      });
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+
+    async function carregarDetalhesJogo() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      try {
+        const resposta = await fetch('/ProjetoGames/api/jogos');
+        const jogos = await resposta.json();
+        const jogo = jogos.find(j => j.id == id);
+
+        if (!jogo) {
+          document.getElementById('detalhes-jogo').innerHTML = `<p class="text-danger">Jogo não encontrado.</p>`;
+          return;
+        }
+
+        document.getElementById('detalhes-jogo').innerHTML = `
+        	<div class="detalhes-container d-flex flex-wrap p-4 rounded">
+        	  <div class="imagem-col me-4 mb-3">
+        	    <img src="imagens/${jogo.nomeImagem}" class="img-fluid rounded shadow" alt="${jogo.titulo}">
+        	  </div>
+        	  <div class="info-col text-white">
+        	    <h2>${jogo.titulo}</h2>
+        	    <p><strong>Preço:</strong> R$ ${jogo.preco.toFixed(2)}</p>
+        	    <p><strong>Desenvolvedor:</strong> ${jogo.desenvolvedor || 'Não informado'}</p>
+        	    <p><strong>Ano de Lançamento:</strong> ${jogo.anoLancamento || 'Desconhecido'}</p>
+        	    <p><strong>Gênero:</strong> ${jogo.genero || 'Aventura'}</p>
+        	    <p><strong>Classificação:</strong> ${jogo.classificacao || 'Livre'}</p>
+        	    <p><strong>Idioma:</strong> ${jogo.idioma || 'Português'}</p>
+        	    <p><strong>Plataforma:</strong> ${jogo.plataformas?.join(', ') || 'Multiplataforma'}</p>
+        	    <p><strong>Avaliação:</strong> ${jogo.avaliacao || 'Sem avaliações'}</p>
+        	    <p><strong>Sinopse:</strong> ${jogo.sinopse}</p>
+        	    <a href="index.html" class="btn-voltar">Voltar</a>
+        	  </div>
+        	</div>
+
+        `;
+      } catch (erro) {
+        console.error('Erro ao carregar detalhes:', erro);
+      }
+    }
+
+    carregarDetalhesJogo();
   </script>
 </body>
 </html>

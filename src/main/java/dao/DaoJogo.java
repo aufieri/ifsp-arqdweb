@@ -84,7 +84,7 @@ public class DaoJogo {
     }
     
     private ArrayList<Jogo> carregarJogosDoArquivo() {
-        try (Reader reader = new FileReader(json, StandardCharsets.UTF_8)) {
+        try (Reader reader = new FileReader(json)) {
             Gson gson = new Gson();
             Type tipoLista = new TypeToken<ArrayList<Jogo>>() {}.getType();
             return gson.fromJson(reader, tipoLista);
@@ -94,7 +94,7 @@ public class DaoJogo {
     }
 
     private void salvarJogosNoArquivo(ArrayList<Jogo> lista) {
-        try (Writer writer = new FileWriter(json, StandardCharsets.UTF_8)) {
+        try (Writer writer = new FileWriter(json)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(lista, writer);
         } catch (IOException e) {

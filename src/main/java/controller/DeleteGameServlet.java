@@ -1,32 +1,47 @@
 package controller;
 
-import java.io.IOException;
+import dao.DaoJogo;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
-import dao.DaoJogo;
+import java.io.IOException;
 
 @WebServlet("/excluir")
 public class DeleteGameServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    private static final long serialVersionUID = 1L;
 
-		// Verifica se o usuário está logado
-		HttpSession session = request.getSession(false); // false evita criar uma nova sessão se não existir
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		if (session == null || session.getAttribute("usuarioLogado") == null) {
-			// Redireciona para uma página de erro ou login
-			response.sendRedirect("erro.jsp"); // ou "login.jsp"
-			return;
-		}
+        // Verifica sessão e usuário logado
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("usuarioLogado") == null) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Usuário não autenticado");
+            return;
+        }
 
-		// Executa a exclusão se estiver logado
-		int id = Integer.parseInt(request.getParameter("id"));
-		DaoJogo.getInstance().removerPorId(id);
+        try {
+            // Pega o id do jogo enviado no corpo da requisição (form-urlencoded)
+            String idParam = request.getParameter("id");
+            if (idParam == null) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID do jogo não fornecido");
+                return;
+            }
 
-		response.sendRedirect("listar-jogos");
-	}
+            int id = Integer.parseInt(idParam);
+
+            // Remover o jogo
+            boolean sucesso = DaoJogo.getInstance().removerPorId(id);
+            if (sucesso) {
+                response.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Jogo não encontrado");
+            }
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido");
+        }
+    }
 }

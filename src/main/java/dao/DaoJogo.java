@@ -136,6 +136,8 @@ public class DaoJogo {
     	    if (sucesso) salvarJogosNoArquivo(listaDeJogos);
     	    return sucesso;
     }
+    
+    
 
     public Jogo buscarPorId(int id) {
         for (Jogo jogo : listaDeJogos) {
@@ -147,12 +149,23 @@ public class DaoJogo {
     }
 
     public boolean removerPorId(int id) {
-        Jogo jogo = buscarPorId(id);
-        if (jogo != null) {
-            return listaDeJogos.remove(jogo);
+        Jogo jogoARemover = null;
+        for (Jogo jogo : listaDeJogos) {
+            if (jogo.getId() == id) {
+                jogoARemover = jogo;
+                break;
+            }
+        }
+        if (jogoARemover != null) {
+            listaDeJogos.remove(jogoARemover);
+            salvarJogosNoArquivo(listaDeJogos);
+            return true;
         }
         return false;
     }
+
+
+
 
     public ArrayList<Jogo> buscarPorTitulo(String termo) {
         ArrayList<Jogo> resultados = new ArrayList<>();

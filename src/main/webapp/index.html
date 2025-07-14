@@ -24,12 +24,7 @@
     <div id="EditandoCarrossel" class="container mb-5">
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner" id="carousel-inner">
-          <div class="carousel-item active">
-            <img src="imagens/destaque.jpg" class="d-block w-100" alt="Destaque">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Confira nossos destaques!</h5>
-            </div>
-          </div>
+          <!-- Slides serão adicionados via JavaScript -->
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
           <span class="carousel-control-prev-icon"></span>
@@ -119,9 +114,9 @@
 
           const lancamentos = jogos.filter(jogo => jogo.lancamento);
 
-          lancamentos.forEach(jogo => {
+          lancamentos.forEach((jogo, index) => {
             const item = document.createElement('div');
-            item.className = 'carousel-item';
+            item.className = 'carousel-item' + (index === 0 ? ' active' : '');
             item.innerHTML = `
               <img src="imagens/${jogo.nomeImagem}" class="d-block w-100" alt="${jogo.titulo}">
               <div class="carousel-caption d-none d-md-block">

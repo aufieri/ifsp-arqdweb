@@ -9,7 +9,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-links">
           <li class="nav-item">
             <a class="nav-link active" href="index.html">Home</a>
@@ -23,9 +23,52 @@
         </ul>
 
 		<form id="form-busca" class="d-flex me-3" method="GET" action="#" role="search">
-  			<input id="input-busca" class="form-control me-2" type="search" name="query" placeholder="Buscar jogo..." aria-label="Buscar">
-  			<button class="btn btn-outline-light" type="submit">Buscar</button>
+  		<!-- Botão de filtro com espaçamento à direita -->
+  		<button type="button" id="btn-filtro" class="btn btn-outline-light me-2" title="Filtrar por categoria">
+    		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+      		<path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
+    		</svg>
+  		</button>
+
+  		<!-- Campo de busca -->
+  		<input id="input-busca" class="form-control me-2" type="search" name="query" placeholder="Buscar jogo..." aria-label="Buscar">
+
+  			<!-- Botão de submit -->
+  		<button class="btn btn-outline-light" type="submit">Buscar</button>
 		</form>
+		
+		<div id="dropdown-filtro" class="bg-dark text-white p-3 rounded shadow" style="position: absolute; top: 50px; right: 40px; display: none; width: 250px; z-index: 1050;">
+  		<h6>Filtrar por Categoria</h6>
+  		<form id="form-filtro">
+    		<div class="form-check">
+      		<input class="form-check-input" type="checkbox" name="genero" value="Ação" id="cat-acao">
+      		<label class="form-check-label" for="cat-acao">Ação</label>
+    		</div>
+    	<div class="form-check">
+     		<input class="form-check-input" type="checkbox" name="genero" value="RPG" id="cat-rpg">
+      		<label class="form-check-label" for="cat-rpg">RPG</label>
+    	</div>
+    	<div class="form-check">
+      		<input class="form-check-input" type="checkbox" name="genero" value="Estratégia" id="cat-estrategia">
+      		<label class="form-check-label" for="cat-estrategia">Estratégia</label>
+    	</div>
+    	<div class="form-check">
+  			<input class="form-check-input" type="checkbox" name="genero" value="Aventura" id="cat-aventura">
+  			<label class="form-check-label" for="cat-aventura">Aventura</label>
+		</div>
+		<div class="form-check">
+  			<input class="form-check-input" type="checkbox" name="genero" value="Tiro" id="cat-tiro">
+  			<label class="form-check-label" for="cat-tiro">Tiro</label>
+		</div>
+		<div class="form-check">
+  			<input class="form-check-input" type="checkbox" name="genero" value="Corrida" id="cat-corrida">
+  			<label class="form-check-label" for="cat-corrida">Corrida</label>
+		</div>
+
+    <button type="submit" class="btn btn-success btn-sm mt-2 w-100">Filtrar</button>
+  </form>
+</div>
+
 
       </div>
     </div>

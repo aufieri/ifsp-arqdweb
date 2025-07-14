@@ -1,12 +1,15 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import model.Jogo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.awt.List;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -202,6 +205,30 @@ public class DaoJogo {
             }
         }
         return false;
+    }
+    
+    
+    public ArrayList<Jogo> buscarPorTituloEGenero(String termo, String[] generos) {
+        ArrayList<Jogo> encontrados = new ArrayList<>();
+        String termoLower = (termo != null) ? termo.toLowerCase() : "";
+
+        ArrayList<String> generosSelecionados = new ArrayList<>();
+        if (generos != null) {
+            for (String g : generos) {
+                generosSelecionados.add(g);
+            }
+        }
+
+        for (Jogo jogo : listaDeJogos) {
+            boolean matchTitulo = termoLower.isEmpty() || jogo.getTitulo().toLowerCase().contains(termoLower);
+            boolean matchGenero = generosSelecionados.isEmpty() || generosSelecionados.contains(jogo.getGenero());
+
+            if (matchTitulo && matchGenero) {
+                encontrados.add(jogo);
+            }
+        }
+
+        return encontrados;
     }
     
 }

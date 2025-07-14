@@ -31,7 +31,8 @@
 
 
 			<!-- Novo Comentário -->
-			<div id="comentario-form-card" class="card bg-dark text-white" style="display: none;">
+			<div id="comentario-form-card" class="card bg-dark text-white"
+				style="display: none;">
 				<div class="card-body">
 					<h5 class="card-title">Novo Comentário</h5>
 					<form id="Cadastro" method="POST" action="criar-comentario"
@@ -145,7 +146,7 @@
   });
 </script>
 
-<script>
+	<script>
 async function carregarComentarios() {
   const params = new URLSearchParams(window.location.search);
   const idJogo = params.get("id");
@@ -199,7 +200,7 @@ async function carregarComentarios() {
 document.addEventListener("DOMContentLoaded", carregarComentarios);
 </script>
 
-<script>
+	<script>
   document.addEventListener("DOMContentLoaded", () => {
     fetch("/ProjetoGames/api/usuario-logado")
       .then(res => res.json())

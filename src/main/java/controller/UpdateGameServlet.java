@@ -4,31 +4,29 @@ import dao.DaoJogo;
 import model.Jogo;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.http.Part;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
+import java.nio.file.*;
+
+import com.google.gson.Gson;
 
 @WebServlet("/UpdateGame")
-@javax.servlet.annotation.MultipartConfig // para receber arquivos
+@MultipartConfig
 public class UpdateGameServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String UPLOAD_DIR = "uploads"; // pasta para salvar imagens
+    private static final String UPLOAD_DIR = "uploads";
 
-    // GET para carregar o formulário de edição com os dados do jogo
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         String idParam = request.getParameter("id");
         if (idParam == null) {
-            response.sendRedirect("listar-jogos");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID do jogo não informado.");
             return;
         }
 
@@ -38,23 +36,26 @@ public class UpdateGameServlet extends HttpServlet {
             Jogo jogo = dao.buscarPorId(id);
 
             if (jogo == null) {
-                response.sendRedirect("listar-jogos");
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Jogo não encontrado.");
                 return;
             }
 
-            // Coloca o jogo como atributo para ser usado no JSP
-            request.setAttribute("jogo", jogo);
-            // Encaminha para a página JSP de edição
-            request.getRequestDispatcher("editar.jsp").forward(request, response);
+            // Retorna os dados em JSON
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+
+            Gson gson = new Gson();
+            response.getWriter().write(gson.toJson(jogo));
 
         } catch (NumberFormatException e) {
-            response.sendRedirect("listar-jogos");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido.");
         }
     }
 
-    // POST para atualizar os dados do jogo
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         request.setCharacterEncoding("UTF-8");
 
         try {
@@ -63,11 +64,11 @@ public class UpdateGameServlet extends HttpServlet {
             Jogo jogo = dao.buscarPorId(id);
 
             if (jogo == null) {
-                response.sendRedirect("listar-jogos");
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Jogo não encontrado.");
                 return;
             }
 
-            // Atualizar campos básicos
+            // Atualiza os campos
             jogo.setTitulo(request.getParameter("titulo"));
             jogo.setDesenvolvedor(request.getParameter("desenvolvedor"));
             jogo.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
@@ -80,18 +81,16 @@ public class UpdateGameServlet extends HttpServlet {
 
             String precoParam = request.getParameter("preco");
             if (precoParam != null && !precoParam.isEmpty()) {
-                double preco = Double.parseDouble(precoParam);
-                jogo.setPreco(preco);
+                jogo.setPreco(Double.parseDouble(precoParam));
             }
 
-            // ✅ Novos campos: Destaque e Lançamento
             boolean destaque = request.getParameter("destaque") != null;
             boolean lancamento = request.getParameter("lancamento") != null;
 
             jogo.setDestaque(destaque);
             jogo.setLancamento(lancamento);
 
-            // Upload da nova imagem, se fornecida
+            // Upload da nova imagem
             Part filePart = request.getPart("imagem");
             if (filePart != null && filePart.getSize() > 0) {
                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -105,20 +104,20 @@ public class UpdateGameServlet extends HttpServlet {
 
                 Path filePath = uploadDirPath.resolve(fileName);
                 try (InputStream input = filePart.getInputStream()) {
-                    Files.copy(input, filePath, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                    Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
                 }
 
                 jogo.setNomeImagem(fileName);
             }
 
-            // Atualiza o jogo no banco de dados
+            // Atualiza o jogo
             dao.atualizar(jogo);
 
-            response.sendRedirect("listar-jogos");
+            response.sendRedirect("CRUD.html");
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("UpdateGame?id=" + request.getParameter("id"));
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Erro ao atualizar o jogo.");
         }
     }
 }

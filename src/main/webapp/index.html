@@ -20,18 +20,15 @@
   <main>
     <h1 class="text-center my-4">Lançamentos</h1>
 
-    <!-- Carrossel (pode adaptar depois) -->
+    <!-- Carrossel dinâmico -->
     <div id="EditandoCarrossel" class="container mb-5">
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
+        <div class="carousel-inner" id="carousel-inner">
           <div class="carousel-item active">
-            <img src="imagens/capa1.jpg" class="d-block w-100" alt="Capa 1">
-          </div>
-          <div class="carousel-item">
-            <img src="imagens/capa2.jpg" class="d-block w-100" alt="Capa 2">
-          </div>
-          <div class="carousel-item">
-            <img src="imagens/capa3.jpg" class="d-block w-100" alt="Capa 3">
+            <img src="imagens/destaque.jpg" class="d-block w-100" alt="Destaque">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Confira nossos destaques!</h5>
+            </div>
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -47,7 +44,14 @@
     <div class="lista-jogos container">
       <h2 class="text-center mb-4 text-uppercase">Jogos</h2>
       <div class="linha-de-cards d-flex flex-wrap justify-content-center gap-4">
-        <!-- Cards via fetch -->
+        <!-- ✅ Card fixo (estático) -->
+        <div class="card text-dark" style="width: 18rem; cursor: pointer;" onclick="window.location.href='CRUD.html?id=0'">
+          <div class="cardedit-body">
+            <h5 class="card-icone">+</h5>
+          </div>
+        </div>
+
+        <!-- ⚙️ Cards dinâmicos virão via JS -->
       </div>
     </div>
   </main>
@@ -56,120 +60,80 @@
   <div id="footer"></div>
 
   <script>
+    // Carrega header
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
 
-  // Carrega header e ativa busca
-  fetch('header.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('header').innerHTML = data;
-
-      // Verifica login
-      fetch('/ProjetoGames/api/usuario-logado')
-        .then(res => res.json())
-        .then(data => {
-          if (data.nome) {
-            document.getElementById('saudacao-usuario').textContent = `Bem-vindo, ${data.nome}`;
-            const loginLogoutLi = document.getElementById('loginLogoutLink');
-            if (loginLogoutLi) {
-              loginLogoutLi.innerHTML = `<a class="nav-link" href="/ProjetoGames/LogoutServlet">Logout</a>`;
+        fetch('/ProjetoGames/api/usuario-logado')
+          .then(res => res.json())
+          .then(data => {
+            if (data.nome) {
+              document.getElementById('saudacao-usuario').textContent = `Bem-vindo, ${data.nome}`;
+              const loginLogoutLi = document.getElementById('loginLogoutLink');
+              if (loginLogoutLi) {
+                loginLogoutLi.innerHTML = `<a class="nav-link" href="/ProjetoGames/LogoutServlet">Logout</a>`;
+              }
             }
-          }
-        });
+          });
+      });
 
-      // Busca por título + gênero
-      const formBusca = document.getElementById('form-busca');
-      const formFiltro = document.getElementById('form-filtro');
-      const inputBusca = document.getElementById('input-busca');
-      const btnFiltro = document.getElementById('btn-filtro');
-      const dropdownFiltro = document.getElementById('dropdown-filtro');
+    // Carrega footer
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+
+    // Adiciona os cards dinâmicos
+    function exibirJogos(jogos) {
       const container = document.querySelector('.linha-de-cards');
 
-      // Toggle do dropdown
-      btnFiltro.addEventListener('click', () => {
-        dropdownFiltro.style.display = dropdownFiltro.style.display === 'block' ? 'none' : 'block';
+      jogos.forEach(jogo => {
+        const card = document.createElement('div');
+        card.className = 'card text-dark';
+        card.style.width = '18rem';
+        card.style.cursor = 'pointer';
+        card.onclick = () => window.location.href = `verMais.html?id=${jogo.id}`;
+
+        card.innerHTML = `
+          <img src="imagens/${jogo.nomeImagem}" class="card-img-top" alt="${jogo.titulo}">
+          <div class="card-body">
+            <h5 class="card-title">${jogo.titulo}</h5>
+            <p class="card-text">R$ ${jogo.preco.toFixed(2)}</p>
+          </div>
+        `;
+        container.appendChild(card);
       });
-
-      // Fecha dropdown ao clicar fora
-      document.addEventListener('click', (e) => {
-        if (!dropdownFiltro.contains(e.target) && e.target !== btnFiltro) {
-          dropdownFiltro.style.display = 'none';
-        }
-      });
-
-      // Submissão do filtro
-      formFiltro.addEventListener('submit', (e) => {
-        e.preventDefault();
-        buscarJogos();
-        dropdownFiltro.style.display = 'none';
-      });
-
-      // Submissão da busca
-      formBusca.addEventListener('submit', (e) => {
-        e.preventDefault();
-        buscarJogos();
-      });
-
-      function buscarJogos() {
-        const termo = inputBusca.value.trim();
-        const generosSelecionados = Array.from(document.querySelectorAll('input[name="genero"]:checked'))
-          .map(input => input.value);
-
-        const params = new URLSearchParams();
-        if (termo.length > 0) params.append('query', termo);
-        generosSelecionados.forEach(g => params.append('genero', g));
-
-        fetch(`/ProjetoGames/buscar-jogos?${params.toString()}`)
-          .then(res => res.json())
-          .then(jogos => exibirJogos(jogos))
-          .catch(err => console.error('Erro ao buscar jogos:', err));
-      }
-    });
-
-  // Carrega footer
-  fetch('footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer').innerHTML = data;
-    });
-
-  // Função para exibir os jogos (cards)
-  function exibirJogos(jogos) {
-    const container = document.querySelector('.linha-de-cards');
-    container.innerHTML = '';
-
-    if (jogos.length === 0) {
-      container.innerHTML = '<p class="text-light text-center">Nenhum jogo encontrado.</p>';
-      return;
     }
 
-    jogos.forEach(jogo => {
-      const card = document.createElement('div');
-      card.className = 'card text-dark';
-      card.style.width = '18rem';
-      card.style.cursor = 'pointer';
-      card.onclick = () => window.location.href = `verMais.html?id=${jogo.id}`;
+    // Carrega jogos e carrossel
+    function carregarTodosJogos() {
+      fetch('/ProjetoGames/api/jogos')
+        .then(res => res.json())
+        .then(jogos => {
+          exibirJogos(jogos);
 
-      card.innerHTML = `
-        <img src="imagens/${jogo.nomeImagem}" class="card-img-top" alt="${jogo.titulo}">
-        <div class="card-body">
-          <h5 class="card-title">${jogo.titulo}</h5>
-          <p class="card-text">R$ ${jogo.preco.toFixed(2)}</p>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
+          const carouselInner = document.getElementById('carousel-inner');
 
-  // Carrega todos os jogos inicialmente
-  function carregarTodosJogos() {
-    fetch('/ProjetoGames/api/jogos')
-      .then(res => res.json())
-      .then(jogos => exibirJogos(jogos));
-  }
+          const lancamentos = jogos.filter(jogo => jogo.lancamento);
 
-  carregarTodosJogos();
+          lancamentos.forEach(jogo => {
+            const item = document.createElement('div');
+            item.className = 'carousel-item';
+            item.innerHTML = `
+              <img src="imagens/${jogo.nomeImagem}" class="d-block w-100" alt="${jogo.titulo}">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>${jogo.titulo}</h5>
+              </div>
+            `;
+            carouselInner.appendChild(item);
+          });
+        });
+    }
 
-
+    carregarTodosJogos();
   </script>
 
 </body>

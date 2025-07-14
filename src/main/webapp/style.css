@@ -690,6 +690,23 @@ textarea:focus, input:focus {
   background-color: #a5e110;
 }
 
+/*--------CARD EDITAR---------------*/
+.cardedit-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;               
+  padding: 0;
+  background-color: #e0e0e0;
+}
+
+.card-icone {
+  font-size: 5rem;          
+  font-weight: bold;
+  color: #9cd32e;            
+  margin: 0;
+}
+
 
 
 

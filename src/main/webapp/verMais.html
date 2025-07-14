@@ -27,6 +27,9 @@
 		<section class="comentarios-section mt-5">
 			<h4 class="text-white mb-3">Comentários</h4>
 
+			<div id="comentarios-lista"></div>
+
+
 			<!-- Novo Comentário -->
 			<div class="card bg-dark text-white">
 				<div class="card-body">
@@ -141,6 +144,61 @@
     }
   });
 </script>
+
+<script>
+async function carregarComentarios() {
+  const params = new URLSearchParams(window.location.search);
+  const idJogo = params.get("id");
+
+  if (!idJogo) {
+    console.error("ID do jogo não encontrado na URL.");
+    return;
+  }
+
+  try {
+    const resposta = await fetch(`/ProjetoGames/api/comentarios?idJogo=${idJogo}`);
+    if (!resposta.ok) {
+      throw new Error("Erro ao buscar comentários");
+    }
+
+    const comentarios = await resposta.json();
+    const container = document.getElementById("comentarios-lista");
+
+    if (!container) {
+      console.error("Div de comentários não encontrada!");
+      return;
+    }
+
+    if (comentarios.length === 0) {
+      container.innerHTML = "<p class='text-light'>Nenhum comentário ainda.</p>";
+      return;
+    }
+
+    // Insere cada comentário
+    comentarios.forEach(c => {
+      const card = document.createElement("div");
+      card.className = "card bg-secondary text-white mb-3";
+
+      card.innerHTML = `
+        <div class="card-body">
+    	  <small><em>${c.nomeUsuario}</em></small>
+          <p class="card-text">${c.texto}</p>
+          <p><strong>Nota:</strong> ${c.nota} / 5</p>
+          
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error("Erro ao carregar comentários:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", carregarComentarios);
+</script>
+
 
 
 </body>

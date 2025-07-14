@@ -644,7 +644,7 @@ textarea:focus, input:focus {
 #dropdown-filtro {
   position: absolute;
   top: 100%; /* aparece logo abaixo do botão */
-  right: 0;  /* alinha com o lado direito do botão */
+  right: 1px;  /* alinha com o lado direito do botão */
   background-color: #1c1c2e;
   padding: 15px 20px;
   border-radius: 10px;

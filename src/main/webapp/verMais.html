@@ -31,7 +31,7 @@
 
 
 			<!-- Novo Comentário -->
-			<div class="card bg-dark text-white">
+			<div id="comentario-form-card" class="card bg-dark text-white" style="display: none;">
 				<div class="card-body">
 					<h5 class="card-title">Novo Comentário</h5>
 					<form id="Cadastro" method="POST" action="criar-comentario"
@@ -197,6 +197,32 @@ async function carregarComentarios() {
 }
 
 document.addEventListener("DOMContentLoaded", carregarComentarios);
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("/ProjetoGames/api/usuario-logado")
+      .then(res => res.json())
+      .then(usuario => {
+        if (usuario && usuario.nome) {
+          // Mostra a saudação
+          document.getElementById("saudacao-usuario").textContent = `Bem-vindo, ${usuario.nome}`;
+          
+          // Mostra o formulário de comentário
+          const comentarioFormCard = document.getElementById("comentario-form-card");
+          if (comentarioFormCard) {
+            comentarioFormCard.style.display = "block";
+          }
+
+          // Troca botão login por logout se existir
+          const loginLogoutLi = document.getElementById("loginLogoutLink");
+          if (loginLogoutLi) {
+            loginLogoutLi.innerHTML = `<a class="nav-link" href="/ProjetoGames/LogoutServlet">Logout</a>`;
+          }
+        }
+      })
+      .catch(error => console.error("Erro ao verificar login:", error));
+  });
 </script>
 
 

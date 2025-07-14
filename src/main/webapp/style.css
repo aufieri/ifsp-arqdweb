@@ -643,8 +643,8 @@ textarea:focus, input:focus {
 /* ===== Box de Filtro de Categoria ===== */
 #dropdown-filtro {
   position: absolute;
-  top: 70px;
-  left: 1550px;/* <- controla o quanto você quer "empurrar para a esquerda" */
+  top: 100%; /* aparece logo abaixo do botão */
+  right: 0;  /* alinha com o lado direito do botão */
   background-color: #1c1c2e;
   padding: 15px 20px;
   border-radius: 10px;
@@ -654,6 +654,7 @@ textarea:focus, input:focus {
   display: none;
   color: white;
 }
+
 
 #dropdown-filtro h6 {
   margin-bottom: 10px;

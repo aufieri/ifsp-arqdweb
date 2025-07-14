@@ -2,6 +2,7 @@ package controller;
 
 import dao.DaoJogo;
 import model.Jogo;
+import model.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,107 +18,141 @@ import com.google.gson.Gson;
 @MultipartConfig
 public class UpdateGameServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-    private static final String UPLOAD_DIR = "uploads";
+	private static final long serialVersionUID = 1L;
+	private static final String UPLOAD_DIR = "uploads";
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        String idParam = request.getParameter("id");
-        if (idParam == null) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID do jogo não informado.");
-            return;
-        }
+		// Verifica se o usuário está logado
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			response.sendRedirect(request.getContextPath() + "/erro.html");
 
-        try {
-            int id = Integer.parseInt(idParam);
-            DaoJogo dao = DaoJogo.getInstance();
-            Jogo jogo = dao.buscarPorId(id);
+			return;
+		}
 
-            if (jogo == null) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Jogo não encontrado.");
-                return;
-            }
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 
-            // Retorna os dados em JSON
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
+		// Verifica se o usuário é admin
+		if (usuario == null || !"admin".equalsIgnoreCase(usuario.getTipo())) {
+			response.sendRedirect(request.getContextPath() + "/erro.html");
 
-            Gson gson = new Gson();
-            response.getWriter().write(gson.toJson(jogo));
+			return;
+		}
 
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido.");
-        }
-    }
+		String idParam = request.getParameter("id");
+		if (idParam == null) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID do jogo não informado.");
+			return;
+		}
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+		try {
+			int id = Integer.parseInt(idParam);
+			DaoJogo dao = DaoJogo.getInstance();
+			Jogo jogo = dao.buscarPorId(id);
 
-        request.setCharacterEncoding("UTF-8");
+			if (jogo == null) {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "Jogo não encontrado.");
+				return;
+			}
 
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            DaoJogo dao = DaoJogo.getInstance();
-            Jogo jogo = dao.buscarPorId(id);
+			// Retorna os dados em JSON
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
 
-            if (jogo == null) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Jogo não encontrado.");
-                return;
-            }
+			Gson gson = new Gson();
+			response.getWriter().write(gson.toJson(jogo));
 
-            // Atualiza os campos
-            jogo.setTitulo(request.getParameter("titulo"));
-            jogo.setDesenvolvedor(request.getParameter("desenvolvedor"));
-            jogo.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
-            jogo.setGenero(request.getParameter("genero"));
-            jogo.setSinopse(request.getParameter("sinopse"));
-            jogo.setIdioma(request.getParameter("idioma"));
-            jogo.setPlataforma(request.getParameter("plataforma"));
-            jogo.setClassificacao(request.getParameter("classificacao"));
-            jogo.setAvaliacao(Double.parseDouble(request.getParameter("avaliacao")));
+		} catch (NumberFormatException e) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido.");
+		}
+	}
 
-            String precoParam = request.getParameter("preco");
-            if (precoParam != null && !precoParam.isEmpty()) {
-                jogo.setPreco(Double.parseDouble(precoParam));
-            }
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-            boolean destaque = request.getParameter("destaque") != null;
-            boolean lancamento = request.getParameter("lancamento") != null;
+		// Verifica se o usuário está logado
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			response.sendRedirect(request.getContextPath() + "/erro.html");
 
-            jogo.setDestaque(destaque);
-            jogo.setLancamento(lancamento);
+			return;
+		}
 
-            // Upload da nova imagem
-            Part filePart = request.getPart("imagem");
-            if (filePart != null && filePart.getSize() > 0) {
-                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-                String applicationPath = request.getServletContext().getRealPath("");
-                String uploadPath = applicationPath + UPLOAD_DIR + File.separator;
-                Path uploadDirPath = Paths.get(uploadPath);
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 
-                if (!Files.exists(uploadDirPath)) {
-                    Files.createDirectories(uploadDirPath);
-                }
+		// Verifica se o usuário é admin
+		if (usuario == null || !"admin".equalsIgnoreCase(usuario.getTipo())) {
+			response.sendRedirect(request.getContextPath() + "/erro.html");
 
-                Path filePath = uploadDirPath.resolve(fileName);
-                try (InputStream input = filePart.getInputStream()) {
-                    Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
-                }
+			return;
+		}
 
-                jogo.setNomeImagem(fileName);
-            }
+		request.setCharacterEncoding("UTF-8");
 
-            // Atualiza o jogo
-            dao.atualizar(jogo);
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+			DaoJogo dao = DaoJogo.getInstance();
+			Jogo jogo = dao.buscarPorId(id);
 
-            response.sendRedirect("CRUD.html");
+			if (jogo == null) {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND, "Jogo não encontrado.");
+				return;
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Erro ao atualizar o jogo.");
-        }
-    }
+			// Atualiza os campos
+			jogo.setTitulo(request.getParameter("titulo"));
+			jogo.setDesenvolvedor(request.getParameter("desenvolvedor"));
+			jogo.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
+			jogo.setGenero(request.getParameter("genero"));
+			jogo.setSinopse(request.getParameter("sinopse"));
+			jogo.setIdioma(request.getParameter("idioma"));
+			jogo.setPlataforma(request.getParameter("plataforma"));
+			jogo.setClassificacao(request.getParameter("classificacao"));
+			jogo.setAvaliacao(Double.parseDouble(request.getParameter("avaliacao")));
+
+			String precoParam = request.getParameter("preco");
+			if (precoParam != null && !precoParam.isEmpty()) {
+				jogo.setPreco(Double.parseDouble(precoParam));
+			}
+
+			boolean destaque = request.getParameter("destaque") != null;
+			boolean lancamento = request.getParameter("lancamento") != null;
+
+			jogo.setDestaque(destaque);
+			jogo.setLancamento(lancamento);
+
+			// Upload da nova imagem
+			Part filePart = request.getPart("imagem");
+			if (filePart != null && filePart.getSize() > 0) {
+				String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+				String applicationPath = request.getServletContext().getRealPath("");
+				String uploadPath = applicationPath + UPLOAD_DIR + File.separator;
+				Path uploadDirPath = Paths.get(uploadPath);
+
+				if (!Files.exists(uploadDirPath)) {
+					Files.createDirectories(uploadDirPath);
+				}
+
+				Path filePath = uploadDirPath.resolve(fileName);
+				try (InputStream input = filePart.getInputStream()) {
+					Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+				}
+
+				jogo.setNomeImagem(fileName);
+			}
+
+			// Atualiza o jogo
+			dao.atualizar(jogo);
+
+			response.sendRedirect("CRUD.html");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Erro ao atualizar o jogo.");
+		}
+	}
 }

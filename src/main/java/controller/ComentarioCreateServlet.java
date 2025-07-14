@@ -19,17 +19,21 @@ public class ComentarioCreateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Sessão não encontrada.");
-            return;
-        }
+    			HttpSession session = request.getSession(false);
+    			if (session == null) {
+    				response.sendRedirect(request.getContextPath() + "/erro.html");
 
-        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuario == null) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Usuário não está logado.");
-            return;
-        }
+    				return;
+    			}
+
+    			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+
+    			// Verifica se o usuário é admin
+    			if (usuario == null || !"admin".equalsIgnoreCase(usuario.getTipo())) {
+    				response.sendRedirect(request.getContextPath() + "/erro.html");
+
+    				return;
+    			}
 
         try {
             String texto = request.getParameter("comentarioTexto");

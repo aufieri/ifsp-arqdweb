@@ -3,6 +3,7 @@ package controller;
 import com.google.gson.Gson;
 import dao.DaoJogo;
 import model.Jogo;
+import model.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,7 @@ public class ListarJogosJson extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Gera JSON com lista de jogos
 		ArrayList<Jogo> jogos = dao.getListaDeJogos();
 		String json = gson.toJson(jogos);
 

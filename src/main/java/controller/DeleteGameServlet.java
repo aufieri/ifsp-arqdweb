@@ -1,6 +1,7 @@
 package controller;
 
 import dao.DaoJogo;
+import model.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +17,16 @@ public class DeleteGameServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Verifica sessão e usuário logado
+        // Verificação se o usuário está logado e é admin
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("usuarioLogado") == null) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Usuário não autenticado");
+        if (session == null) {
+            response.sendRedirect(request.getContextPath() + "/erro.html");
+            return;
+        }
+
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuario == null || !"admin".equalsIgnoreCase(usuario.getTipo())) {
+            response.sendRedirect(request.getContextPath() + "/erro.html");
             return;
         }
 

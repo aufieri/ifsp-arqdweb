@@ -56,7 +56,8 @@
   <div id="footer"></div>
 
   <script>
-//Carrega header e ativa busca
+
+  // Carrega header e ativa busca
   fetch('header.html')
     .then(res => res.text())
     .then(data => {
@@ -75,26 +76,52 @@
           }
         });
 
-      // Ativa a busca do header após o header ser carregado
+      // Busca por título + gênero
       const formBusca = document.getElementById('form-busca');
+      const formFiltro = document.getElementById('form-filtro');
       const inputBusca = document.getElementById('input-busca');
+      const btnFiltro = document.getElementById('btn-filtro');
+      const dropdownFiltro = document.getElementById('dropdown-filtro');
       const container = document.querySelector('.linha-de-cards');
 
-      if (formBusca && inputBusca) {
-        formBusca.addEventListener('submit', function (e) {
-          e.preventDefault(); // Evita reload da página
-          const termo = inputBusca.value.trim();
+      // Toggle do dropdown
+      btnFiltro.addEventListener('click', () => {
+        dropdownFiltro.style.display = dropdownFiltro.style.display === 'block' ? 'none' : 'block';
+      });
 
-          if (termo.length === 0) {
-            carregarTodosJogos(); // Se o input estiver vazio, mostra tudo
-            return;
-          }
+      // Fecha dropdown ao clicar fora
+      document.addEventListener('click', (e) => {
+        if (!dropdownFiltro.contains(e.target) && e.target !== btnFiltro) {
+          dropdownFiltro.style.display = 'none';
+        }
+      });
 
-          fetch(`/ProjetoGames/buscar-jogos?query=${encodeURIComponent(termo)}`)
-            .then(res => res.json())
-            .then(jogos => exibirJogos(jogos))
-            .catch(err => console.error('Erro ao buscar jogos:', err));
-        });
+      // Submissão do filtro
+      formFiltro.addEventListener('submit', (e) => {
+        e.preventDefault();
+        buscarJogos();
+        dropdownFiltro.style.display = 'none';
+      });
+
+      // Submissão da busca
+      formBusca.addEventListener('submit', (e) => {
+        e.preventDefault();
+        buscarJogos();
+      });
+
+      function buscarJogos() {
+        const termo = inputBusca.value.trim();
+        const generosSelecionados = Array.from(document.querySelectorAll('input[name="genero"]:checked'))
+          .map(input => input.value);
+
+        const params = new URLSearchParams();
+        if (termo.length > 0) params.append('query', termo);
+        generosSelecionados.forEach(g => params.append('genero', g));
+
+        fetch(`/ProjetoGames/buscar-jogos?${params.toString()}`)
+          .then(res => res.json())
+          .then(jogos => exibirJogos(jogos))
+          .catch(err => console.error('Erro ao buscar jogos:', err));
       }
     });
 
@@ -133,15 +160,15 @@
     });
   }
 
-  // Carrega todos os jogos no início
+  // Carrega todos os jogos inicialmente
   function carregarTodosJogos() {
     fetch('/ProjetoGames/api/jogos')
       .then(res => res.json())
       .then(jogos => exibirJogos(jogos));
   }
 
-  // Inicialização
   carregarTodosJogos();
+
 
   </script>
 

@@ -22,8 +22,9 @@ public class BuscarJogosServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String termo = request.getParameter("query");
+        String[] generos = request.getParameterValues("genero");
 
-        ArrayList<Jogo> resultados = dao.buscarPorTitulo(termo);
+        ArrayList<Jogo> resultados = dao.buscarPorTituloEGenero(termo, generos);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

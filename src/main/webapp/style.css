@@ -707,6 +707,23 @@ textarea:focus, input:focus {
   margin: 0;
 }
 
+#id-acesso{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #FF4C4C;           /* Vermelho forte para destacar */
+  background-color: #1f1f2e; /* Fundo escuro para contraste */
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 76, 76, 0.3);
+  text-align: center;
+  max-width: 500px;
+  margin: 100px auto;       /* Centraliza verticalmente com margem */
+  transition: transform 0.3s ease;
+}
+
+#id-acesso:hover {
+  transform: scale(1.05);    /* Animação suave no hover */
+}
 
 
 

@@ -68,6 +68,24 @@
       .then(res => res.text())
       .then(data => {
         document.getElementById('header').innerHTML = data;
+        
+        const botaoFiltro = document.getElementById('btn-filtro');
+        const dropdownFiltro = document.getElementById('dropdown-filtro');
+
+        if (botaoFiltro && dropdownFiltro) {
+          botaoFiltro.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isVisible = dropdownFiltro.style.display === 'block';
+            dropdownFiltro.style.display = isVisible ? 'none' : 'block';
+          });
+
+          document.addEventListener('click', function (e) {
+            const isClickInside = dropdownFiltro.contains(e.target) || botaoFiltro.contains(e.target);
+            if (!isClickInside) {
+              dropdownFiltro.style.display = 'none';
+            }
+          });
+        }
 
         fetch('/ProjetoGames/api/usuario-logado')
         .then(res => res.json())
@@ -164,6 +182,41 @@
     }
 
     carregarTodosJogos();
+    
+ // Manipular filtro por categoria
+    document.addEventListener('submit', function (e) {
+      if (e.target && e.target.id === 'form-filtro') {
+        e.preventDefault();
+
+        const categoriasSelecionadas = Array.from(document.querySelectorAll('input[name="genero"]:checked'))
+          .map(input => input.value);
+
+        fetch('/ProjetoGames/api/jogos')
+          .then(res => res.json())
+          .then(jogos => {
+            const filtrados = jogos.filter(jogo => categoriasSelecionadas.includes(jogo.genero));
+            document.querySelector('.linha-de-cards').innerHTML = ''; // limpa os cards antigos
+            exibirJogos(filtrados);
+          });
+      }
+    });
+
+    // Manipular busca por nome
+    document.addEventListener('submit', function (e) {
+      if (e.target && e.target.id === 'form-busca') {
+        e.preventDefault();
+
+        const termo = document.getElementById('input-busca').value.trim().toLowerCase();
+
+        fetch('/ProjetoGames/api/jogos')
+          .then(res => res.json())
+          .then(jogos => {
+            const filtrados = jogos.filter(jogo => jogo.titulo.toLowerCase().includes(termo));
+            document.querySelector('.linha-de-cards').innerHTML = ''; // limpa os cards antigos
+            exibirJogos(filtrados);
+          });
+      }
+    });
   });
 </script>
 

@@ -28,12 +28,12 @@ public class ComentarioCreateServlet extends HttpServlet {
 
     			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 
-    			// Verifica se o usuário é admin
-    			if (usuario == null || !"admin".equalsIgnoreCase(usuario.getTipo())) {
-    				response.sendRedirect(request.getContextPath() + "/erro.html");
-
-    				return;
+    			// Verifica se o usuário é admin ou avaliador
+    			if (usuario == null || !(usuario.getTipo().equalsIgnoreCase("admin") || usuario.getTipo().equalsIgnoreCase("avaliador"))) {
+    			    response.sendRedirect(request.getContextPath() + "/erro.html");
+    			    return;
     			}
+
 
         try {
             String texto = request.getParameter("comentarioTexto");
